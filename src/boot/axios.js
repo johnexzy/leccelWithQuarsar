@@ -3,7 +3,7 @@ import axios from 'axios'
 axios.defaults.baseURL = 'https://app.leccel.net'
 const blogApi = axios.create({
   baseURL:
-    "https://public-api.wordpress.com/rest/v1.1/sites/leccelnet.wordpress.com"
+    "https://public-api.wordpress.com/rest/v1.1/sites/200645152/"
 });
 export default ({ app }) => {
   app.blogApi = blogApi;

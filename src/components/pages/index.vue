@@ -1,65 +1,89 @@
 <template>
   <div class="content-wrapper">
     <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-8 col-lg-8">
-          <div v-if="StickyNews.title">
-            <div class="container bg-light">
-              <div class="jumbotron jumbotron-fluid bg-light position-relative">
-                <div class="pl-4 pr-3 tofront">
-                  <div class="row justify-content-between">
-                    <div
-                      class="col-12 col-md-8 pt-6 pb-6 align-self-center"
-                      style="min-height: 200px"
-                    >
-                      <h1 class="secondfont mb-3 font-weight-bold">
-                        {{ StickyNews.title.rendered }}
-                      </h1>
-                      <div class="mb-3 ellipsis-2-lines" v-html="StickyNews.excerpt" />
-                      <div class="q-pa-md">
-                        <q-chip
-                          v-for="(n, i) in StickyNews.categories"
-                          :key="i"
-                          size="md"
-                          class="glossy"
-                          >{{ n.name }}</q-chip
-                        >
-                      </div>
-
-                      <!-- <q-separator /> -->
-                      <router-link
-                        :to="{ name: 'Series', params: { short_url: StickyNews.slug } }"
-                        class="btn btn-dark"
-                        >Read More</router-link
-                      >
-                    </div>
-                    <div class="col-12 col-md-4 d-md-block mt-3">
+      <div class="row justify-center">
+        <div class="col-12 col-md-8 col-sm-10 col-lg-8">
+          <div v-if="StickyPost.title">
+            <div :class="`container ${$q.screen.lt.md ? 'q-mb-lg' : 'q-ma-md'} `">
+              <q-card class="my-card">
+                <q-card-section>
+                  <div class="q-px-md">
+                    <div class="row justify-center">
                       <div
-                        class="flex justify-content-center align-items-center text-center"
+                        class="col-12 col-md-8 pt-6 pb-6 align-self-center"
+                        style="min-height: 200px"
                       >
-                        <img
-                          v-if="StickyNews.featured_media"
-                          :src="StickyNews.jetpack_featured_media_url"
-                          height="300px"
-                          width="180px"
-                          alt=""
-                        />
+                        <h1 class="nunito q-mb-md font-weight-bold">
+                          {{ StickyPost.title }}
+                        </h1>
+                        <div class="secondfont line-height-sm q-mb-md ellipsis-3-lines" v-html="StickyPost.excerpt" />
+
+                        <div class=" text-italic">
+                          <span class=" text-weight-bold text-caption">
+                          Featured in:
+                        </span>
+                          <q-chip
+                            v-for="(n, i) in StickyPost.categories"
+                            :key="i"
+                            size="md"
+                            class="text-primary shadow-4"
+                            >{{ n.name }}</q-chip
+                          >
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-4 col-sm-6 q-mt-md">
+                        <div
+                          class="flex justify-content-center align-items-center text-center"
+                        >
+                          <q-img
+                            v-if="StickyPost.featured_image"
+                            :src="StickyPost.featured_image"
+
+                            class="img-rounded shadow-4"
+                            :alt="StickyPost.title"
+                          />
+                        </div>
+                      </div>
+                      <!-- <q-separator /> -->
+                    </div>
+                    <div class="row justify-content-start">
+                      <div class="col-12 q-mt-lg">
+                        <!-- <q-separator /> -->
+                        <q-btn
+                          color="primary"
+                          :to="{ name: 'Series', params: { short_url: StickyPost.slug } }"
+                          >Read More</q-btn
+                        >
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </q-card-section>
+              </q-card>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 col-lg-4">
-          <q-card class="bg-light" square>
+        <div class="col-12 col-md-4 col-sm-10 col-lg-4">
+          <q-card :class="`container ${$q.screen.lt.md ? '' : 'q-ma-md'} `" >
+            <q-card-section class="q-pt-xs">
+             <div class="text-h5 q-mt-sm q-mb-xs">Recently added</div>
+            </q-card-section>
             <q-card-section>
-              <q-list class="q-pa-md" separator>
-                <q-item clickable v-for="(n, i) in News" :key="i">
-                  <q-item-section>{{ n.title.rendered }}</q-item-section>
-                  <q-item-section v-for="(c, s) in News.categories" :key="s">
-                    <q-chip size="md" class="glossy">{{ c.name }}</q-chip>
+              <q-list class="" separator>
+                <q-item clickable v-for="(n, i) in FeaturedPosts" :key="i">
+                  <q-item-section>
+                    <q-item-label
+                      ><div class="text-subtitle1 text">{{ n.title }}</div>
+                    </q-item-label>
+
+                    <q-item-label caption>
+                      <div class="text-caption text-italic" v-for="(c, s) in n.categories" :key="s">
+                        in {{ c.name }} <q-space />
+                      </div>
+                    </q-item-label>
+                  </q-item-section>
+                  <q-item-section side top>
+                    <q-item-label caption>{{ timeAgo(n.date) }}</q-item-label>
+                    <!-- <q-icon name="star" color="yellow" /> -->
                   </q-item-section>
                 </q-item>
               </q-list>
@@ -96,10 +120,10 @@ export default {
       "LatestMovies",
       "LatestSeries",
       "News",
-      "StickyNews",
       "Categories",
     ]),
-    // ...mapGetters(["news"])
+
+    ...mapGetters("blog", ["FeaturedPosts", "StickyPost"]),
   },
 };
 </script>

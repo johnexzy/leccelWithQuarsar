@@ -42,7 +42,9 @@ export default {
     this.$store.dispatch("leccel/getPopularMusic");
     this.$store.dispatch("leccel/getPopularVideo");
     this.$store.dispatch("leccel/getPopularSeries");
-    this.$store.dispatch("leccel/fetchCat");
+    this.$store.dispatch("blog/fetchCategories");
+    this.$store.dispatch("blog/fetchFeaturedPosts")
+    this.$store.dispatch("blog/fetchStickyPost")
   },
 };
 </script>

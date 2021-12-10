@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import leccel from './leccel'
-
+import blog from './blog'
 Vue.use(Vuex)
 
 /*
@@ -17,7 +17,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      leccel
+      leccel,
+      blog
     },
 
     // enable strict mode (adds overhead!)

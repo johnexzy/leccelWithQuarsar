@@ -78,7 +78,10 @@
 }
 .content-wrapper {
   background: theme-color(primary);
-  padding: 60px 0;
+  padding: 60px 100px;
+  @media (max-width: 999px) {
+    padding: 60px 10px;
+  }
   .banner-content {
     position: absolute;
     padding: 40px 60px;
@@ -100,8 +103,6 @@
     padding: 0;
     margin: 0;
     li {
-      
-
       a {
         background-color: color(gray-lighter);
         margin: 3px auto;
@@ -121,10 +122,9 @@
           text-decoration: none;
           color: theme-color(dark);
           font-weight: normal;
-          box-shadow: inset 1px 1px 2px 1px #47011661
+          box-shadow: inset 1px 1px 2px 1px #47011661;
         }
       }
-      
     }
   }
   .badge-positioned {
