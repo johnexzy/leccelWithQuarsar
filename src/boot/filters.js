@@ -42,6 +42,9 @@ export default ({ Vue }) => {
     filters: {
       checkForS(val) {
         return val.endsWith("s") ? `${val}'` : `${val}'s`;
+      },
+      capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
       }
     }
   });

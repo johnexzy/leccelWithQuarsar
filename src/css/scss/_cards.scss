@@ -36,44 +36,54 @@
   -ms-box-shadow: $card-box-shadow;
   .card-body {
     padding: $card-padding-y $card-padding-x;
+    .row {
+      &:hover {
+        box-shadow: 0 0 0 !important;
+        background: #2e2ee917;
+        transition: 0.1s all;
+      }
+    }
     + .card-body {
       padding-top: 1rem;
     }
   }
+  .card-header {
+    background: rgba(216, 216, 216, 0.918);
+    padding: $card-padding-y $card-padding-x;
+  }
   .card-title {
     color: $card-title-color;
-    margin-bottom: 1.5rem;
+    // margin-bottom: 1.5rem;
     text-transform: uppercase;
-    font-size: .875rem;
-    font-weight: bold; 
+    font-size: 1em;
+    font-weight: bold;
   }
   .card-subtitle {
     color: #818181;
     font-weight: 400;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
-  
   }
   .card-description {
-    margin-bottom: .875rem;
+    margin-bottom: 0.875rem;
     font-weight: 400;
     color: $card-description-color;
   }
   &.card-outline-success {
-		border: 1px solid theme-color("success");
-	}
-	&.card-outline-primary {
-		border: 1px solid theme-color("primary");
-	}
-	&.card-outline-warning {
-		border: 1px solid theme-color("warning");
-	}
-	&.card-outline-danger {
-		border: 1px solid theme-color("danger");
-	}
-	&.card-rounded {
-		@include border-radius(5px);
-	}
+    border: 1px solid theme-color("success");
+  }
+  &.card-outline-primary {
+    border: 1px solid theme-color("primary");
+  }
+  &.card-outline-warning {
+    border: 1px solid theme-color("warning");
+  }
+  &.card-outline-danger {
+    border: 1px solid theme-color("danger");
+  }
+  &.card-rounded {
+    @include border-radius(5px);
+  }
 
   &.card-faded {
     background: #b5b0b2;
@@ -83,14 +93,14 @@
     color: $white;
     text-align: center;
   }
-  &.card-square{
+  &.card-square {
     border-radius: 0;
   }
   &.card-img-holder {
     position: relative;
     .card-img-absolute {
       position: absolute;
-      top:0;
+      top: 0;
       right: 0;
       height: 100%;
     }
@@ -98,17 +108,17 @@
   &.card-weather {
     .weather-daily {
       .weather-day {
-        opacity: .5;
+        opacity: 0.5;
         font-weight: 900;
       }
       i {
         font-size: 20px;
       }
       .weather-temp {
-        margin-top: .5rem;        
+        margin-top: 0.5rem;
         margin-bottom: 0;
-        opacity: .5;
-        font-size: .75rem;
+        opacity: 0.5;
+        font-size: 0.75rem;
       }
     }
   }
@@ -116,6 +126,10 @@
 
 @each $color, $value in $theme-colors {
   .card-inverse-#{$color} {
-    @include card-inverse-variant(rgba(theme-color($color), .2), theme-color-level($color, 1), theme-color-level($color, 3));
+    @include card-inverse-variant(
+      rgba(theme-color($color), 0.2),
+      theme-color-level($color, 1),
+      theme-color-level($color, 3)
+    );
   }
 }

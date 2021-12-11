@@ -1,62 +1,71 @@
-
 .dashboard-tabs {
-    .item {
-      border-bottom: 1px solid $border-color;
-      @media (min-width: 577px) {
-        border-bottom: 0;
-      }
+  .item {
+    border-bottom: 1px solid $border-color;
+    @media (min-width: 577px) {
+      border-bottom: 0;
     }
   }
-  
-  .nav-tabs {
-      border: 1px solid $border-color;
-      .nav-link {
-          background: $nav-tabs-link-bg;
-          color: $nav-tabs-link-color;
-          border-radius: 0;
-          border: 1px solid $border-color;
-          padding: 1rem 1.5rem .2rem 1.5rem;
-          @media (max-width: 767px) {
-              padding: 1rem .5rem .2rem .5rem;
-          }
-      }
-      .nav-item {
-          .nav-link {
-              border: 0;
-            //   background: transparent;
-              &.active {
-                  border: 0;
-                  border-bottom: 4px solid #5646ff;
-                  color: theme-color(primary);
-              }
-          }
-      }
-  }
-  .container{
-    @media (max-width: 300px) {
-      padding: 3px;
-      margin: 0
-    }
-  }
-  .d-flex{
-    &.shadow{
-      &:hover{
-        box-shadow: 0 0 0 !important;
-        background: #2e2ee917;
-        transition: .1s all;
-      }
-    }
-  }
-  .card{
-    &.shadow{
-      &:hover{
-        box-shadow: 0 0 0 !important;
-        background: #2e2ee917;
-        transition: .1s all;
-      }
-    }
-  }
+}
 
-  .shadow-inset{
-    box-shadow: inset 1px 0px 0.5px 1px;
+.nav-tabs {
+  border: 1px solid $border-color;
+  .nav-link {
+    background: $nav-tabs-link-bg;
+    color: $nav-tabs-link-color;
+    border-radius: 0;
+    border: 1px solid $border-color;
+    padding: 1rem 1.5rem 0.2rem 1.5rem;
+    @media (max-width: 767px) {
+      padding: 1rem 0.5rem 0.2rem 0.5rem;
+    }
   }
+  .nav-item {
+    .nav-link {
+      border: 0;
+      //   background: transparent;
+      &.active {
+        border: 0;
+        border-bottom: 4px solid #5646ff;
+        color: theme-color(primary);
+      }
+    }
+  }
+}
+.categories {
+  width: 100%;
+  font-family: 'Courgette', cursive;
+  background: linear-gradient(100deg, #53535f17 10%, rgb(71, 61, 57) 25%);
+  padding: 3px;
+  .shadow-5:hover{
+    box-shadow: inset -0.7px -2px 1px rgb(80, 77, 77) !important;
+    font-weight: 600;
+  }
+}
+.container {
+  @media (max-width: 300px) {
+    padding: 3px;
+    margin: 0;
+  }
+}
+.flex {
+  &.shadow {
+    &:hover {
+      box-shadow: 0 0 0 !important;
+      background: #2e2ee917;
+      transition: 0.1s all;
+    }
+  }
+}
+.card {
+  &.shadow {
+    &:hover {
+      box-shadow: 0 0 0 !important;
+      background: #2e2ee917;
+      transition: 0.1s all;
+    }
+  }
+}
+
+.shadow-inset {
+  box-shadow: inset 1px 0px 0.5px 1px;
+}

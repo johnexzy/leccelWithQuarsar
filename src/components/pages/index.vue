@@ -1,11 +1,11 @@
 <template>
   <div class="content-wrapper">
     <div class="container">
-      <div class="row justify-center">
-        <div class="col-12 col-md-8 col-sm-10 col-lg-8">
+      <div class="row">
+        <div :class="`col-12 col-md-8 col-sm-10 col-lg-8 stretch-card grid-margin`">
           <div v-if="StickyPost.title">
-            <div :class="`container ${$q.screen.lt.md ? 'q-mb-lg' : 'q-ma-md'} `">
-              <q-card class="my-card">
+            <div :class="`container `">
+              <q-card :class="`${$q.screen.lt.md ? '':'q-mr-md'}`">
                 <q-card-section>
                   <div class="q-px-md">
                     <div class="row justify-center">
@@ -16,17 +16,20 @@
                         <h1 class="nunito q-mb-md font-weight-bold">
                           {{ StickyPost.title }}
                         </h1>
-                        <div class="secondfont line-height-sm q-mb-md ellipsis-3-lines" v-html="StickyPost.excerpt" />
+                        <div
+                          class="secondfont line-height-sm q-mb-md ellipsis-3-lines"
+                          v-html="StickyPost.excerpt"
+                        />
 
-                        <div class=" text-italic">
-                          <span class=" text-weight-bold text-caption">
-                          Featured in:
-                        </span>
+                        <div class=" ">
+                          <span class="text-italic text-weight-bold text-caption">
+                            Featured in:
+                          </span>
                           <q-chip
                             v-for="(n, i) in StickyPost.categories"
                             :key="i"
                             size="md"
-                            class="text-primary shadow-4"
+                            class="text-primary shadow-1 cursor-pointer"
                             >{{ n.name }}</q-chip
                           >
                         </div>
@@ -38,7 +41,6 @@
                           <q-img
                             v-if="StickyPost.featured_image"
                             :src="StickyPost.featured_image"
-
                             class="img-rounded shadow-4"
                             :alt="StickyPost.title"
                           />
@@ -46,15 +48,17 @@
                       </div>
                       <!-- <q-separator /> -->
                     </div>
-                    <div class="row justify-content-start">
-                      <div class="col-12 q-mt-lg">
-                        <!-- <q-separator /> -->
-                        <q-btn
-                          color="primary"
-                          :to="{ name: 'Series', params: { short_url: StickyPost.slug } }"
-                          >Read More</q-btn
-                        >
-                      </div>
+                    <div class="row justify-center q-mt-md">
+                      <!-- <div class="col-12 q-mt-lg"> -->
+                      <!-- <q-separator /> -->
+                      <q-btn
+                        color="primary"
+                        rounded
+                        no-caps
+                        :to="{ name: 'Series', params: { short_url: StickyPost.slug } }"
+                        >Read More</q-btn
+                      >
+                      <!-- </div> -->
                     </div>
                   </div>
                 </q-card-section>
@@ -62,10 +66,10 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 col-sm-10 col-lg-4">
-          <q-card :class="`container ${$q.screen.lt.md ? '' : 'q-ma-md'} `" >
+        <div :class="`col-grow grid-margin`">
+          <q-card :class="`container ${$q.screen.lt.md ? '' : ''} `">
             <q-card-section class="q-pt-xs">
-             <div class="text-h5 q-mt-sm q-mb-xs">Recently added</div>
+              <div class="text-h5 q-mt-sm q-mb-xs">Recently added</div>
             </q-card-section>
             <q-card-section>
               <q-list class="" separator>
@@ -76,7 +80,11 @@
                     </q-item-label>
 
                     <q-item-label caption>
-                      <div class="text-caption text-italic" v-for="(c, s) in n.categories" :key="s">
+                      <div
+                        class="text-caption text-italic"
+                        v-for="(c, s) in n.categories"
+                        :key="s"
+                      >
                         in {{ c.name }} <q-space />
                       </div>
                     </q-item-label>
@@ -88,18 +96,35 @@
                 </q-item>
               </q-list>
             </q-card-section>
+            <q-separator></q-separator>
+            <q-card-actions vertical>
+              <q-btn color="primary" icon="read_more" label="Load More" @click="onClick" />
+            </q-card-actions>
           </q-card>
         </div>
       </div>
     </div>
     <div class="container">
+      <div class="categories">
+        <div class="text-center h1 text-white text-weight-bolder ">
+          Explore Categories
+        </div>
+        <div class="row justify-center">
+          <q-card :class="`shadow-5 text-white q-ma-md cursor-pointer bg-teal-${n+3}`" v-for="c, n in Categories" :key="n">
+            <q-card-section> {{c.name | capitalize}} </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </div>
+    <div class="container q-mt-md">
       <music-index :latest-music="LatestMusic" :popular-music="PopularMusic" />
-      <div class="row" data-aos="fade-right">
+
+      <!-- <div class="row" data-aos="fade-right">
         <movies-index :latest-movies="LatestMovies" />
       </div>
       <div class="row" data-aos="fade-up">
         <series-index :latest-series="LatestSeries" />
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- </div> -->
@@ -120,10 +145,10 @@ export default {
       "LatestMovies",
       "LatestSeries",
       "News",
-      "Categories",
+      // "Categories",
     ]),
 
-    ...mapGetters("blog", ["FeaturedPosts", "StickyPost"]),
+    ...mapGetters("blog", ["FeaturedPosts", "StickyPost", "Categories" ]),
   },
 };
 </script>

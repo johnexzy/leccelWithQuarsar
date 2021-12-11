@@ -1,5 +1,5 @@
 <template>
-  <div class="flash-news-banner" style="background: #ffffff;">
+  <div class="flash-news-banner" style="background: #ffffff">
     <div class="fit row justify-between items-end content-start">
       <div>
         <router-link :to="{ name: 'home' }">
@@ -7,7 +7,14 @@
         </router-link>
       </div>
       <div class="q-mt-md">
-        <q-input color="primary" class="nav-search" rounded outlined v-model="query" label="Search music">
+        <q-input
+          color="primary"
+          class="nav-search"
+          rounded
+          outlined
+          v-model="query"
+          label="Search music"
+        >
           <template v-slot:append>
             <q-icon name="search" />
           </template>
@@ -60,41 +67,30 @@
     </div>
     <div :class="`row text-center  menu-bottom ${sticky ? 'sticky' : ''}`">
       <div class="fit row justify-center items-end content-start">
-        <ul class="row q-ma-none" style="">
-          <li
-            class="q-pt-sm q-mx-sm shadow-10"
-            style="width: 62px; height: 62px"
-          >
+        <ul class="row q-ma-none" style="margin-left: -25px">
+          <li class="q-pt-sm q-mr-sm shadow-10" style="width: 62px; height: 62px">
             <router-link :to="{ name: 'home' }">
-              <i class="d-block mdi mdi-24px mdi-home" />
+              <q-icon name="home" size="md" />
               <p class="font-weight-bold text-uppercase">Home</p>
             </router-link>
           </li>
-          <li
-            class="q-pt-sm q-mx-sm shadow-10"
-            style="width: 62px; height: 62px"
-          >
+          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
             <router-link :to="{ name: 'AllMusic' }">
-              <i class="mdi mdi-24px mdi-music-note" />
-              <p class="font-weight-bold text-uppercase">Music</p>
+              <q-icon name="audiotrack" size="md" />
+              <p class="text-uppercase">Music</p>
             </router-link>
           </li>
-          <li
-            class="q-pt-sm q-mx-sm shadow-10"
-            style="width: 62px; height: 62px"
-          >
-            <router-link :to="{ name: 'AllMovies' }" >
-              <i class="mdi mdi-24px mdi-video" />
-              <p class="font-weight-bold text-uppercase">Movies</p>
+          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
+            <router-link :to="{ name: 'AllMovies' }">
+              <!-- <i class="mdi mdi-24px mdi-video" /> -->
+              <q-icon name="library_music" size="md" />
+              <p class="font-weight-bold text-uppercase">Album</p>
             </router-link>
           </li>
-          <li
-            class="q-pt-sm q-mx-sm shadow-10"
-            style="width: 62px; height: 62px"
-          >
+          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
             <router-link :to="{ name: 'AllSeries' }">
-              <i class="mdi mdi-24px mdi-movie" />
-              <p class="font-weight-bold text-uppercase">Series</p>
+              <q-icon name="rss_feed" size="md" />
+              <p class="font-weight-bold text-uppercase">Blog</p>
             </router-link>
           </li>
         </ul>

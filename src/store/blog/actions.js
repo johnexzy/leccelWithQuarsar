@@ -10,9 +10,9 @@ export async function fetchStickyPost({ commit }) {
     commit("setLoadingStickyPost");
     // console.log('url', process.env.BLOG_API)
     await blogApi.get(`/posts?sticky=require&number=1,&fields=ID,excerpt,slug,featured_image,title,content,categories`).then(response => {
-      
+
       commit("setStickyPost", response.data);
-      commit("setLoadingStickyPost"); 
+      commit("setLoadingStickyPost");
 
       // console.log(response.data)
     });
@@ -28,9 +28,9 @@ export async function fetchFeaturedPosts({ commit }) {
     commit("setLoadingFeaturedPosts");
     // console.log('url', process.env.BLOG_API)
     await blogApi.get(`/posts?number=5&fields=ID,excerpt,slug,featured_image,title,content,categories,date,modified`).then(response => {
-      
+
       commit("setFeaturedPosts", response.data);
-      commit("setLoadingFeaturedPosts"); 
+      commit("setLoadingFeaturedPosts");
 
       // console.log(response.data)
     });
@@ -62,7 +62,7 @@ export async function fetchCategories({ commit }) {
   try {
     commit("setLoadingCategories");
     await blogApi.get(`/categories`).then(response => {
-      commit("setCategories", response.data);
+      commit("setCategories", response.data.categories);
       commit("setLoadingCategories");
 
       // console.log(response.data)

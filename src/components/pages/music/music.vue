@@ -1,85 +1,75 @@
 <template>
   <div class="row">
-    <div class="col-lg-4 grid-margin stretch-card">
-      <div 
-        class="card shadow-lg" 
-        style="border-radius: 0">
-        <div class="card-header font-weight-bold">
-          <i class="mdi mdi-trending-up"/> Trending Music
+    <div :class="`col-12 col-md-4 col-sm-10 col-lg-4 stretch-card grid-margin`">
+      <q-card :class="`card ${$q.screen.lt.md ? '':'q-mr-md'}`" square>
+        <div class="card-header text-weight-bold">
+          <div class="card-title ">🚀 Trending Music</div>
         </div>
-        <div class="card-body">
-          <router-link
+        <q-card-section class="card-body">
+
+            <router-link
             v-for="(pmusic, i) in popularMusic"
             :key="i"
-            :to="{ name: 'Music', params: { short_url: pmusic.short_url}}"
-            class="h3 font-weight-200 mb-1"
-            style="text-decoration: none; color: inherit"
-          >
-            <div
-              class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
-              style="cursor: pointer"
+            tag="div"
+            :to="{ name: 'Music', params: { short_url: pmusic.short_url } }"
+              class="fit row inline justify-start items-stretch content-start shadow-4 cursor-pointer"
+
             >
               <!-- <i class="mdi mdi-star-circle text-danger"/> -->
-              <h4 class="d-inline font-weight-200 mb-0">
-                <img
+
+                <q-img
                   :src="pmusic.images[0]"
                   style="width: 60px; height: 60px"
                   alt=""
-                  class="card-img d-inline"
-                >
-              </h4>
-              <p class="d-inline ml-1 font-weight-bold text-primary">
+                />
+              <div class="col self-center wrap q-ml-sm text-weight-bold text-black">
                 {{ pmusic.music_name }}
-              </p>
-            </div>
-          </router-link>
-        </div>
-      </div>
+                <!-- wifu fweibivi woiv wvowieb vwibvwveowv woievbwv iobio -->
+              </div>
+            </router-link>
+        </q-card-section>
+      </q-card>
     </div>
 
-    <div 
-      class="col-lg-8 grid-margin" 
-      data-aos="fade-down">
-      <div class="card card-square">
+    <div class="col-12 col-lg-8 grid-margin" data-aos="fade-down">
+      <q-card :class="`card ${$q.screen.lt.md ? '':'q-ml-md'}`"  square>
         <div class="card-header">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="card-title">Download Latest Music</div>
-            <a
-              class="mb-2 btn btn-outline-light btn-primary btn-info"
+          <div class="row justify-between align-items-center">
+            <div class="card-title">🕔 Latest Music</div>
+            <q-btn
+              color="primary"
               style="font-size: 16px"
-              href="pages/music.html"
+              no-caps
+              unelevated
+              to="pages/music.html"
             >
               Go to Music <b class="mdi">&RightArrow;</b>
-            </a>
+            </q-btn>
           </div>
         </div>
-        <div class="card-body">
+        <q-card-section class="card-body">
           <router-link
             v-for="(lmusic, i) in latestMusic"
             :key="i"
-            :to="{ name: 'Music', params: { short_url: lmusic.short_url}}"
-            class="h3 font-weight-200 mb-1"
-            style="text-decoration: none; color: inherit"
-          >
-            <div
-              class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
-              style="cursor: pointer"
+            tag="div"
+            :to="{ name: 'Music', params: { short_url: lmusic.short_url } }"
+              class="fit row inline justify-start items-stretch content-start shadow-4 cursor-pointer"
+
             >
-              <h4 class="d-inline font-weight-200 mb-0">
-                <img
+              <!-- <i class="mdi mdi-star-circle text-danger"/> -->
+
+                <q-img
                   :src="lmusic.images[0]"
                   style="width: 60px; height: 60px"
                   alt=""
-                  class="card-img d-inline"
-                >
-              </h4>
-              <h4 class="d-inline ml-1 font-weight-bold text-primary">
-                (MP3) - {{ lmusic.music_name }}
-              </h4>
-            </div>
-          </router-link>
-        </div>
-      </div>
+                />
+              <div class="col self-center wrap q-ml-sm text-weight-bold text-black-50">
+                   (MP3) - {{ lmusic.music_name }}
+                <!-- wifu fweibivi woiv wvowieb vwibvwveowv woievbwv iobio -->
+              </div>
+            </router-link>
+        </q-card-section>
+      </q-card>
     </div>
   </div>
 </template>
