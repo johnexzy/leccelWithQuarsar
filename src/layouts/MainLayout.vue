@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-center pad2x">
-        <p class="mt-2">
+        <p class="q-mt-md">
           <router-link :to="{ name: 'about' }">About Us </router-link> |
           <router-link :to="{ name: 'contact' }">Contact Us</router-link> |
           <router-link :to="{ name: 'privacy' }">Privacy Policy</router-link>

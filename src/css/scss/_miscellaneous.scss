@@ -47,24 +47,24 @@
     margin: 0;
   }
 }
-.flex {
-  &.shadow {
-    &:hover {
-      box-shadow: 0 0 0 !important;
-      background: #2e2ee917;
-      transition: 0.1s all;
-    }
-  }
-}
-.card {
-  &.shadow {
-    &:hover {
-      box-shadow: 0 0 0 !important;
-      background: #2e2ee917;
-      transition: 0.1s all;
-    }
-  }
-}
+// .flex {
+//   &.shadow {
+//     &:hover {
+//       box-shadow: 0 0 0 !important;
+//       background: #2e2ee917;
+//       transition: 0.1s all;
+//     }
+//   }
+// }
+// .card {
+//   &.shadow {
+//     &:hover {
+//       box-shadow: 0 0 0 !important;
+//       background: #2e2ee917;
+//       transition: 0.1s all;
+//     }
+//   }
+// }
 
 .shadow-inset {
   box-shadow: inset 1px 0px 0.5px 1px;

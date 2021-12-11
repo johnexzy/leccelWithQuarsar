@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div :class="`col-12 col-md-4 col-sm-10 col-lg-4 stretch-card grid-margin`">
-      <q-card :class="`card ${$q.screen.lt.md ? '':'q-mr-md'}`" square>
+    <div :class="`col-12 col-md-4 col-sm-12 col-lg-4 stretch-card grid-margin`">
+      <q-card :class="`card ${$q.screen.lt.md ? '':'q-ma-md'}`" square>
         <div class="card-header text-weight-bold">
           <div class="card-title ">🚀 Trending Music</div>
         </div>
@@ -31,8 +31,8 @@
       </q-card>
     </div>
 
-    <div class="col-12 col-lg-8 grid-margin" data-aos="fade-down">
-      <q-card :class="`card ${$q.screen.lt.md ? '':'q-ml-md'}`"  square>
+    <div class="col-12 col-md-8 col-lg-8 grid-margin" data-aos="fade-down">
+      <q-card :class="`card ${$q.screen.lt.md ? '':'q-ma-md'}`"  square>
         <div class="card-header">
           <div class="row justify-between align-items-center">
             <div class="card-title">🕔 Latest Music</div>

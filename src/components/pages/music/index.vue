@@ -1,36 +1,25 @@
-
 <template>
   <div class="content-wrapper">
     <div class="container">
       <div class="col-sm-12">
-        <div class="card card-square grid-margin">
+        <q-card class="card card-square grid-margin">
           <div class="card-header">
-            <h3 class="font-weight-600 mb-4 text-center">Searching Made Easy</h3>
+            <h3 class="font-weight-600 mb-4 text-center">
+              Search Music by name or artist
+            </h3>
           </div>
-          <div class="card-body">
+          <q-card-section class="">
             <ValidationObserver v-slot="{ passes }">
               <form @submit.prevent="passes(changeRoute)">
-                <div
-                  class="form-group"
-                  data-aos="fade-down">
-                  <ValidationProvider
-                    v-slot="{ errors }"
-                    name="search"
-                    rules="maxlength"
-                  >
-                    <div class="input-group">
-                      <input
-                        v-model="query"
-                        type="text"
-                        class="form-control searchInput border-info shadow-inset"
-                        style="
-                        height: 60px;
-                        line-height: normal;
-                        font-size: large;
-                      "
-                        placeholder="Search here"
-                      >
-                    </div>
+                <div class="form-group" data-aos="fade-down">
+                  <ValidationProvider v-slot="{ errors }" name="search" rules="maxlength">
+                    <q-input
+                      square
+                      outlined
+                      v-model="query"
+                      class="searchInput shadow-2 fs-16"
+                      label="Search Music"
+                    />
                     <div
                       v-for="(datum, i) in errors"
                       :key="i"
@@ -42,71 +31,52 @@
                   <div class="mt-3" />
                 </div>
                 <div class="border-bottom shadow" />
-                <div
-                  class="d-flex justify-content-center align-content-center mt-2"
-                >
-                  <button
-                    class="btn btn-lg btn-info btn-icon-text searchButton text-center shadow"
-                    type="submit"
-                  >
-                    <i class="mdi mdi-search-web" />
-                  </button>
+                <div class="row justify-center align-content-center q-mt-md">
+                  <q-btn icon="search" color="primary" type="submit"> Search </q-btn>
                 </div>
               </form>
             </ValidationObserver>
-          </div>
-        </div>
-        <div
-          class="row"
-          data-aos="fade-up">
+          </q-card-section>
+        </q-card>
+        <div class="row" data-aos="fade-up">
           <div class="col-sm-12 grid-margin">
-            <div class="card card-square">
+            <q-card class="card card-square">
               <div class="card-header">
                 <div class="row">
                   <div class="col-sm-12">
-                    <h3 class="font-weight-600 mb-4 text-center">
-                      Trending Music 💹💹
-                    </h3>
+                    <h3 class="font-weight-600 mb-4 text-center">Trending Music 💹💹</h3>
                   </div>
                 </div>
               </div>
-              <div class="card-body show-popular">
+              <q-card-section class="card-body">
                 <router-link
-                  v-for="(pmusic, i) in PopularMusic"
+                  v-for="(lmusic, i) in PopularMusic"
                   :key="i"
-                  :to="{ name: 'Music', params: { short_url: pmusic.short_url}}"
-                  class="h3 font-weight-200 mb-1"
-                  style="text-decoration: none; color: inherit"
+                  tag="div"
+                  :to="{ name: 'Music', params: { short_url: lmusic.short_url } }"
+                  class="fit row inline justify-start items-stretch content-start shadow-4 cursor-pointer"
                 >
+                  <!-- <i class="mdi mdi-star-circle text-danger"/> -->
+
+                  <q-img
+                    :src="lmusic.images[0]"
+                    style="width: 60px; height: 60px"
+                    alt=""
+                  />
                   <div
-                    class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
-                    style="cursor: pointer"
+                    class="col self-center wrap q-ml-sm text-weight-bold text-black-50"
                   >
-                    <h4 class="d-inline font-weight-200 mb-0">
-                      <img
-                        :src="pmusic.images[0]"
-                        style="width: 60px; height: 60px"
-                        alt=""
-                        class="card-img d-inline"
-                      >
-                    </h4>
-                    <h4 class="d-inline ml-1 font-weight-bold text-primary">
-                      {{ pmusic.music_name }}
-                      <p style="color: rgb(175 175 175 / 88%); font-size: 15px">
-                        uploaded on {{ formatDate(pmusic.created_at) }}
-                      </p>
-                    </h4>
+                    (MP3) - Download {{ lmusic.music_name }}
+                    <!-- wifu fweibivi woiv wvowieb vwibvwveowv woievbwv iobio -->
                   </div>
                 </router-link>
-              </div>
-            </div>
+              </q-card-section>
+            </q-card>
           </div>
         </div>
-        <div
-          class="row"
-          data-aos="fade-up">
+        <div class="row" data-aos="fade-up">
           <div class="col-sm-12 grid-margin">
-            <div class="card card-square">
+            <q-card class="card card-square">
               <div class="card-header">
                 <div class="row">
                   <div class="col-sm-12">
@@ -114,101 +84,83 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-xl-12">
-                    <div class="row show-music">
-                      <div
-                        v-show="loading"
-                        class="album-loader">
-                        <div class="d-flex justify-content-center">
-                          <img
-                            src="~/assets/images/loader.gif"
-                            alt="" >
-                        </div>
-                      </div>
-                      <router-link
-                        v-for="(music, i) in musicArr"
-                        :key="i"
-                        :to="{ name: 'Music', params: { short_url: music.short_url}}"
-                        tag="div"
-                        style="cursor: pointer"
-                        class="col-md-4 grid-margin stretch-card"
-                      >
-                        <div class="card card-rounded shadow music">
-                          <div class="card-img-holder">
-                            <img
-                              :src="music.images[0]"
-                              alt=""
-                              class="card-img" >
-                          </div>
-
-                          <div
-                            class="card-body p-2"
-                            style="background: #eee">
-                            <h3
-                              class="font-weight-200 mb-2"
-                              style="color: #561529"
-                            >
-                              (Download MP3) - {{ music.music_name }}
-                            </h3>
-                            <div class="d-flex justify-content-between">
-                              <p class="d-inline L5 mb-0">
-                                <i class="mdi mdi-artist" />
-                                <router-link
-                                  :to="`/search/music/${music.artist}`"
-                                  class="fs-15 text-muted text-decoration-none"
-                                >
-                                  {{ music.artist }}
-                                </router-link>
-                              </p>
-                              <p class="d-inline mb-0">
-                                <i class="mdi mdi-comment" />({{
-                                  music.comments.length
-                                }})
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </router-link>
+              <q-card-section>
+                <div class="row show-music">
+                  <!-- <div class="col-xl-12"> -->
+                  <!-- <div class="row show-music"> -->
+                  <div v-show="loading" class="album-loader">
+                    <div class="d-flex justify-content-center">
+                      <img src="~/assets/images/loader.gif" alt="" />
                     </div>
                   </div>
+                  <router-link
+                    v-for="(music, i) in AllMusic"
+                    :key="i"
+                    :to="{ name: 'Music', params: { short_url: music.short_url } }"
+                    tag="div"
+                    style="cursor: pointer"
+                    class="col-md-3 grid-margin q-pa-sm stretch-card"
+                  >
+                    <q-card class="music">
+                      <div class="card-img-holder">
+                        <q-img class="col-3" :src="music.images[0]" alt="" />
+                      </div>
+
+                      <q-card-section class="">
+                        <h4 class="q-mb-sm wrap" style="color: #561529">
+                          (Download MP3) - {{ music.music_name }}
+                        </h4>
+                        <div class="row justify-between">
+                          <p class="d-inline L5 mb-0">
+                            <i class="mdi mdi-artist" />
+                            <router-link
+                              :to="`/search/music/${music.artist}`"
+                              style="text-decoration: none"
+                              class="fs-15 text-muted text-decoration-none"
+                            >
+                              {{ music.artist }}
+                            </router-link>
+                          </p>
+                          <p class="d-inline mb-0">
+                            <i class="mdi mdi-comment" />({{ music.comments.length }})
+                          </p>
+                        </div>
+                      </q-card-section>
+                    </q-card>
+                  </router-link>
+                  <!-- </div> -->
+                  <!-- </div> -->
                 </div>
-              </div>
-              <nav
+              </q-card-section>
+              <!-- <nav
                 class="nav d-flex align-items-center justify-content-center"
                 aria-label="Album-pager"
               >
                 <ul class="pagination">
-                  <li
-                    class="page-item prev"
-                    @click="makeReq('- 1')">
-                    <input
-                      id="pagelink"
-                      value=""
-                      type="hidden" >
+                  <li class="page-item prev" @click="makeReq('- 1')">
+                    <input id="pagelink" value="" type="hidden" />
                     <a class="page-link">
                       <i class="mdi mdi-arrow-left-bold" />
                     </a>
                   </li>
 
-                  <li
-                    class="page-item next"
-                    @click="makeReq('+ 1')">
-                    <input
-                      id="pagelink"
-                      value=""
-                      type="hidden" >
+                  <li class="page-item next" @click="makeReq('+ 1')">
+                    <input id="pagelink" value="" type="hidden" />
                     <a class="page-link">
                       <i class="mdi mdi-arrow-right-bold" />
                     </a>
                   </li>
                 </ul>
-              </nav>
-              <div class="d-flex align-items-center justify-content-center pad2x">
+              </nav> -->
+              <!-- <div class="d-flex align-items-center justify-content-center pad2x">
                 <p class="pager">Page {{ current_page }} of {{ total_pages }}</p>
               </div>
-            </div>
+              <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages">
+              </q-pagination> -->
+              <div class="q-pa-lg flex flex-center">
+                <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages" input />
+              </div>
+            </q-card>
           </div>
         </div>
       </div>
@@ -217,7 +169,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { ValidationProvider, extend, ValidationObserver } from "vee-validate";
 extend("maxlength", {
   validate: (v) => v.length > 3,
@@ -233,38 +185,57 @@ export default {
     return {
       loading: true,
       musicArr: [],
-      current_page: 0,
-      total_pages: 1,
+      current_page: 1,
+      total_pages: 100,
       isLastPage: false,
-      query: ''
+      query: "",
     };
   },
   computed: {
-    ...mapGetters('leccel', ["PopularMusic"]),
+    ...mapGetters("leccel", ["PopularMusic", "AllMusic", "AllMusicMeta"]),
   },
+  // beforeMount() {
+  //   this.makeReq("+ 1");
+  // },
   beforeMount() {
-    this.makeReq("+ 1");
+    this.loading = true;
+    this.getMusicByPage(this.current_page).then(() => {
+      this.current_page = this.AllMusicMeta.current_page;
+      this.loading = false;
+    });
   },
-  methods: {
-    makeReq(param) {
-      if (this.isLastPage && param == "+ 1") return;
-      this.loading === true;
-      this.$api
-        .get(`/api/v1/music/pages/${eval(`${this.current_page}${param}`)}`)
-        .then((res) => {
-          this.musicArr = res.data.data.map(m => ({
-            ...m,
-            images: m.images.map(x=> `https://app.leccel.net/${x}`)
-          }));
-          this.total_pages = res.data.meta.total_pages;
-          this.current_page = res.data.meta.current_page;
-          this.isLastPage =
-            this.current_page === this.total_pages ? true : false;
+  watch: {
+    current_page: {
+      handler(val) {
+        this.loading === true;
+        this.getMusicByPage(val).then(() => {
+          this.current_page = this.AllMusicMeta.current_page;
+
           this.loading = false;
         });
+      },
     },
+  },
+  methods: {
+    ...mapActions("leccel", ["getMusicByPage"]),
+    // makeReq(param) {
+    //   if (this.isLastPage && param == "+ 1") return;
+    //   this.loading === true;
+    //   this.$api
+    //     .get(`/api/v1/music/pages/${eval(`${this.current_page}${param}`)}`)
+    //     .then((res) => {
+    //       this.musicArr = res.data.data.map((m) => ({
+    //         ...m,
+    //         images: m.images.map((x) => `https://app.leccel.net/${x}`),
+    //       }));
+    //       this.total_pages = res.data.meta.total_pages;
+    //       this.current_page = res.data.meta.current_page;
+    //       this.isLastPage = this.current_page === this.total_pages ? true : false;
+    //       this.loading = false;
+    //     });
+    // },
     changeRoute() {
-      this.$router.push(`/search/music/${encodeURI(this.query)}`)
+      this.$router.push(`/search/music/${encodeURI(this.query)}`);
     },
     formatDate(c) {
       let ss = new Date(Date.parse(c));

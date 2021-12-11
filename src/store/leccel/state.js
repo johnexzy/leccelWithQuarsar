@@ -11,6 +11,8 @@ export default function () {
     popularVideo: [],
     popularSeries: [],
 
+    allMusic: [],
+    allMusicMeta: {},
     news: [],
     sticky_news: [],
     cat: []

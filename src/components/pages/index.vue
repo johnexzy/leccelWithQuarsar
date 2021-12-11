@@ -1,8 +1,8 @@
 <template>
   <div class="content-wrapper">
     <div class="container">
-      <div class="row">
-        <div :class="`col-12 col-md-8 col-sm-10 col-lg-8 stretch-card grid-margin`">
+      <div class="row justify-center">
+        <div :class="`col-12 col-md-8 col-lg-8  stretch-card grid-margin`">
           <div v-if="StickyPost.title">
             <div :class="`container `">
               <q-card :class="`${$q.screen.lt.md ? '':'q-mr-md'}`">

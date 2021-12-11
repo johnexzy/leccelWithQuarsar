@@ -31,7 +31,7 @@
                   <div class="mt-3" />
                 </div>
                 <div class="border-bottom shadow" />
-                <div class="d-flex justify-content-center align-content-center mt-2">
+                <div class="d-flex justify-content-center align-content-center q-mt-md">
                   <button
                     class="btn btn-lg btn-info btn-icon-text searchButton text-center shadow"
                     type="submit"
@@ -62,7 +62,7 @@
                   style="text-decoration: none; color: inherit"
                 >
                   <div
-                    class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
+                    class="d-flex justify-content-start border-bottom q-mt-md mb-2 shadow"
                     style="cursor: pointer"
                   >
                     <h4 class="d-inline font-weight-200 mb-0">

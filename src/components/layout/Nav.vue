@@ -6,11 +6,12 @@
           <img src="~/assets/images/LECCEL3.png" alt="" />
         </router-link>
       </div>
-      <div class="q-mt-md">
+      <div class="q-my-sm">
         <q-input
           color="primary"
           class="nav-search"
           rounded
+          dense
           outlined
           v-model="query"
           label="Search music"

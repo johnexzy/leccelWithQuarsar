@@ -98,7 +98,7 @@
                     style="text-decoration: none; color: inherit"
                   >
                     <div
-                      class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
+                      class="d-flex justify-content-start border-bottom q-mt-md mb-2 shadow"
                       style="cursor: pointer"
                     >
                       <h4 class="d-inline font-weight-200 mb-0">
@@ -134,7 +134,7 @@
                     tag="div"
                   >
                     <div
-                      class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
+                      class="d-flex justify-content-start border-bottom q-mt-md mb-2 shadow"
                       style="cursor: pointer"
                     >
                       <h4 class="d-inline font-weight-200 mb-0">
@@ -170,7 +170,7 @@
                     style="text-decoration: none; color: inherit"
                   >
                     <div
-                      class="d-flex justify-content-start border-bottom mt-2 mb-2 shadow"
+                      class="d-flex justify-content-start border-bottom q-mt-md mb-2 shadow"
                       style="cursor: pointer"
                     >
                       <h4 class="d-inline font-weight-200 mb-0">

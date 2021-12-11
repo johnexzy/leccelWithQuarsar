@@ -1,12 +1,20 @@
-
-import axios from "axios"
+import axios from "axios";
 /**
-         * get latest music and return commit
-         * @param {commit} commit Commit
-         * @return commit
-         */
-export async function getLatestMusic ({ commit }) {
-  return commit('setLatestMusic', await axios.get(`/api/v1/music/limit/10`))
+ * get latest music and return commit
+ * @param {commit} commit Commit
+ * @return commit
+ */
+export async function getLatestMusic({ commit }) {
+  return commit("setLatestMusic", await axios.get(`/api/v1/music/limit/10`));
+}
+
+/**
+ * get musicbypage and return commit
+ * @param {commit} commit Commit
+ * @return commit
+ */
+export async function getMusicByPage({ commit }, current_page = 1) {
+  return commit("setMusic", await axios.get(`/api/v1/music/pages/${current_page}`));
 }
 
 /**
@@ -14,8 +22,8 @@ export async function getLatestMusic ({ commit }) {
  * @param {commit} commit Commit
  * @return commit
  */
-export async function getLatestMovie ({ commit }) {
-  return commit('setLatestMovie', await axios.get(`/api/v1/videos/limit/10`))
+export async function getLatestMovie({ commit }) {
+  return commit("setLatestMovie", await axios.get(`/api/v1/videos/limit/10`));
 }
 
 /**
@@ -23,8 +31,8 @@ export async function getLatestMovie ({ commit }) {
  * @param {commit} commit Commit
  * @return commit
  */
-export async function getLatestSeries ({ commit }) {
-  return commit('setLatestSeries', await axios.get(`/api/v1/series/limit/9`))
+export async function getLatestSeries({ commit }) {
+  return commit("setLatestSeries", await axios.get(`/api/v1/series/limit/9`));
 }
 
 /**
@@ -32,8 +40,8 @@ export async function getLatestSeries ({ commit }) {
  * @param {commit} commit Commit
  * @return commit
  */
-export async function getPopularMusic ({ commit }) {
-  return commit('setPopularMusic', await axios.get(`/api/v1/music/popular/10`))
+export async function getPopularMusic({ commit }) {
+  return commit("setPopularMusic", await axios.get(`/api/v1/music/popular/10`));
 }
 
 /**
@@ -41,8 +49,11 @@ export async function getPopularMusic ({ commit }) {
  * @param {commit} commit Commit
  * @return commit
  */
-export async function getPopularVideo ({ commit }) {
-  return commit('setPopularVideo', await axios.get(`/api/v1/videos/popular/10`))
+export async function getPopularVideo({ commit }) {
+  return commit(
+    "setPopularVideo",
+    await axios.get(`/api/v1/videos/popular/10`)
+  );
 }
 
 /**
@@ -50,39 +61,43 @@ export async function getPopularVideo ({ commit }) {
  * @param {Commit} commit Commit
  * @return commit
  */
-export async function getPopularSeries ({ commit }) {
-  return commit('setPopularSeries', await axios.get(`/api/v1/series/popular/10`))
+export async function getPopularSeries({ commit }) {
+  return commit(
+    "setPopularSeries",
+    await axios.get(`/api/v1/series/popular/10`)
+  );
 }
 
-export async function fetchNews ({ commit, dispatch }) {
+export async function fetchNews({ commit, dispatch }) {
   try {
-    await axios.get("/blog/wp-json/wp/v2/posts?per_page=3").then((res) => {
-      commit("addNews", res.data)
+    await axios.get("/blog/wp-json/wp/v2/posts?per_page=3").then(res => {
+      commit("addNews", res.data);
       // dispatch("fetchCat")
-      dispatch("fetchStickyNews")
-    })
+      dispatch("fetchStickyNews");
+    });
   } catch (error) {
     console.error(error);
   }
 }
-export async function fetchStickyNews ({ commit }) {
+export async function fetchStickyNews({ commit }) {
   try {
-    await axios.get("/blog/wp-json/wp/v2/posts?sticky=true&per_page=1").then((res) => {
-      commit("setStickyNews", res.data)
-      // dispatch("fetchCat")
-    })
+    await axios
+      .get("/blog/wp-json/wp/v2/posts?sticky=true&per_page=1")
+      .then(res => {
+        commit("setStickyNews", res.data);
+        // dispatch("fetchCat")
+      });
   } catch (error) {
     console.error(error);
   }
 }
-export async function fetchCat ({ commit, dispatch }) {
+export async function fetchCat({ commit, dispatch }) {
   try {
-    await axios.get("/blog/wp-json/wp/v2/categories").then((res) => {
-      commit("setCat", res.data)
-      dispatch("fetchNews")
-    })
+    await axios.get("/blog/wp-json/wp/v2/categories").then(res => {
+      commit("setCat", res.data);
+      dispatch("fetchNews");
+    });
   } catch (error) {
     console.error(error);
   }
 }
-

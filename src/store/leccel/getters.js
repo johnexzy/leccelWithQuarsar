@@ -8,7 +8,12 @@ export function someGetter (/* state */) {
 export function LatestMusic (state) {
   return state.latestMusic
 }
-
+export function AllMusic(state) {
+  return state.allMusic;
+}
+export function AllMusicMeta(state) {
+  return state.allMusicMeta;
+}
 /**
  * Returns Popular music
  * @param {Object} state states oject
