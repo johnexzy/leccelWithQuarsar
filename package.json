@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
+    "start": "node server.js",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar dev",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar build"
   },
@@ -16,9 +17,12 @@
     "aos": "^2.3.4",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.1",
+    "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.3",
+    "express": "^4.17.1",
     "quasar": "^1.0.0",
+    "serve-static": "^1.14.1",
     "timeago-simple": "^1.2.4",
     "vee-validate": "^3.4.14",
     "vue-aplayer": "^1.6.1",
