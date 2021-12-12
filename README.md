@@ -1,6 +1,6 @@
 # Leccel Quasar App (leccel)
 
-A music media
+A music media formally written with standalone Vue.
 
 ## Install the dependencies
 ```bash
