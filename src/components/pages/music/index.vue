@@ -89,7 +89,7 @@
                   <!-- <div class="col-xl-12"> -->
                   <!-- <div class="row show-music"> -->
                   <div v-show="loading" class="album-loader">
-                    <div class="d-flex justify-content-center">
+                    <div class="row justify-content-center justify-center">
                       <img src="~/assets/images/loader.gif" alt="" />
                     </div>
                   </div>
@@ -241,6 +241,65 @@ export default {
       let ss = new Date(Date.parse(c));
       return ss.toLocaleDateString();
     },
+  },
+    meta() {
+    const image = "../../../assets/images/LECCEL1.png";
+    const title = "Discover latest and trending Musicon Leccel.net";
+    const description = "Search Music by title or artist. stream online or download for free";
+
+    return {
+      // Title tag
+      title: title,
+
+      // meta tags
+      meta: {
+        description: {
+          name: "description",
+          content: description,
+        },
+
+        // Open Graph Tags
+        ogTitle: {
+          name: "og:title",
+          content: title,
+        },
+        ogDescription: {
+          name: "og:description",
+          content: description,
+        },
+        ogURL: {
+          property: "og:url",
+          content: window.location.href,
+        },
+        ogImage: {
+          property: "og:image",
+          content: image,
+        },
+        twitterCard: { name: "twitter:card", content: "summary" },
+        twitterTitle: {
+          name: "twitter:title",
+          content: title,
+        },
+        twitterImage: {
+          name: "twitter:image",
+          content: image,
+        },
+
+        // Google / Schema.org markup:
+        schemaName: {
+          itemprop: "name",
+          content: title,
+        },
+        schemaDesc: {
+          itemprop: "description",
+          content: description,
+        },
+        schemaImage: {
+          itemprop: "image",
+          content: image,
+        },
+      },
+    };
   },
 };
 </script>
