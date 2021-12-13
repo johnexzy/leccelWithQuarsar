@@ -9,9 +9,16 @@ export function someGetter (state) {
  * @returns
  */
 export function FeaturedPosts (state){
+  return state.featuredPosts.posts
+}
+/**
+ * Fetch All Posts~
+ * @param {*} state
+ * @returns
+ */
+export function FeaturedPostsMeta (state){
   return state.featuredPosts
 }
-
 /**
  * Fetch Sticky Post~
  * @param {*} state

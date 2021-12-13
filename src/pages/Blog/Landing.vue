@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <!-- header -->
-    <section class="hero-wrapper q-py-xl" style="background: #02184d;">
+    <section class="hero-wrapper q-py-xl" style="background: #470116ea;">
       <div class="container">
         <h1 class="text-h2 text-white q-mb-md">Leccel's Blog</h1>
         <h2 class="text-subtitle1 text-white">
@@ -15,20 +15,20 @@
       <div class="container">
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-6 col-lg-6">
-            <img class="full-width" :src="featuredPost.featured_image" alt="" />
+            <img class="full-width" :src="StickyPost.featured_image" alt="" />
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <div class="text-caption text-para-default q-mb-sm">
-              {{ Object.keys(featuredPost.categories)[0].toLocaleUpperCase() }}
+              <!-- {{ Object.keys(StickyPost.categories)[0].toLocaleUpperCase() }} -->
             </div>
             <router-link
-              :to="{ name: 'blogs.blog', params: { blog: featuredPost.slug } }"
+              :to="{ name: 'blogs.blog', params: { blog: StickyPost.slug } }"
               class="text-h3 text-default text-weight-bold"
             >
-              {{ featuredPost.title }}
+              {{ StickyPost.title }}
             </router-link>
             <div
-              v-html="featuredPost.excerpt"
+              v-html="StickyPost.excerpt"
               class="text-subtitle q-my-sm"
             ></div>
             <div class="row">
@@ -39,15 +39,15 @@
                       <q-avatar size="30px">
                         <q-img
                           style="width: 30px; height: 30px;"
-                          :src="featuredPost.author.avatar_URL"
+                          :src="StickyPost.author.avatar_URL"
                         />
                       </q-avatar>
                     </q-item-section>
                     <q-item-section>{{
-                      featuredPost.author.name
+                      StickyPost.author.name
                     }}</q-item-section>
                     <q-item-section side>{{
-                      timeAgo(featuredPost.modified)
+                      timeAgo(StickyPost.modified)
                     }}</q-item-section>
                   </q-item>
                 </q-list>
@@ -71,15 +71,13 @@
               vertical
               class="text-default text-left q-mb-xl"
               active-color="primary"
-              v-if="Categories.categories"
-              align="start"
               style="height: unset!important"
             >
               <q-tab
                 style="font-size: 1.2rem;"
                 class="blog-category-tab"
                 no-caps
-                v-for="(cat, i) in Categories.categories"
+                v-for="(cat, i) in Categories"
                 :key="i"
                 :name="cat.slug"
                 :label="cat.name"
@@ -136,7 +134,7 @@
               transition-next="jump-up"
             >
               <q-tab-panel
-                v-for="(cat, i) in Categories.categories"
+                v-for="(cat, i) in Categories"
                 :key="i"
                 :name="cat.slug"
               >
@@ -264,7 +262,7 @@ const { mapGetters, mapActions } = createNamespacedHelpers('blog')
 export default {
   preFetch({ store }) {
     // store.registerModule('blog', blog)
-    return store.dispatch('blog/fetchFeaturedPosts')
+    return store.dispatch('blog/fetchStickyPost')
   },
   components: {
     // GetAccessToMoreFeatures
@@ -272,7 +270,8 @@ export default {
   data() {
     return {
       tab: 'product',
-      email: ''
+      email: '',
+      // StickyPost: {}
     }
   },
   watch: {
@@ -283,19 +282,18 @@ export default {
   mounted() {
     this.fetchCategories()
     this.fetchPostsByCategories()
+    // this.StickyPost = this.FeaturedPostsMeta.posts[0]
   },
   computed: {
     ...mapGetters([
-      'FeaturedPosts',
+      // 'FeaturedPosts',
+      'StickyPost',
       'Categories',
       'LoadingPostsByCategories',
       'PostsByCategories',
       'LoadingCategories',
-      'LoadingFeaturedPosts'
+      'LoadingStickyPost'
     ]),
-    featuredPost() {
-      return this.FeaturedPosts.posts[0]
-    }
   },
   methods: {
     ...mapActions(['fetchCategories', 'fetchPostsByCategories']),

@@ -2,7 +2,7 @@
 <template>
   <div class="content-wrapper">
 
-    <div class="container">
+    <div class="container-m">
       <div class="card">
         <div class="card-header">Privacy Policy</div>
         <div class="card-body">

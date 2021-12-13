@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div 
-      class="d-flex justify-content-center text-light text-center m-3" 
+    <div
+      class="d-flex justify-content-center text-light text-center m-3"
       data-aos="fade-down">
       <h3 class="text-uppercase font-weight-600 shadow">
         Get the Latest Movies, Music and Series for Free on Leccel.net
@@ -10,9 +10,9 @@
     <ValidationObserver v-slot="{ passes }">
       <fieldset>
         <legend>ADD NEW COURSE</legend>
-        <div 
-          style="margin-bottom: 5px; border-radius: 5px" 
-          class="container">
+        <div
+          style="margin-bottom: 5px; border-radius: 5px"
+          class="container-m">
           <form @submit.prevent="passes(addCourse)">
             <ValidationProvider
               v-slot="{ errors }"
@@ -27,9 +27,9 @@
                 type="text"
                 placeholder="Write Course Code "
               >
-              <div 
-                v-for="(datum, i) in errors" 
-                :key="i" 
+              <div
+                v-for="(datum, i) in errors"
+                :key="i"
                 class="alert">
                 <i>{{ datum }}</i>
               </div>
@@ -57,8 +57,8 @@
                     color: #fff;
                     "
                 >
-                  <option 
-                    value="A" 
+                  <option
+                    value="A"
                     selected>A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -70,14 +70,14 @@
               </div>
             </div>
             <div class="btnAddSec">
-              <button 
-                class="btnAdd" 
-                type="submit" 
+              <button
+                class="btnAdd"
+                type="submit"
                 @click="passes(addCourse)">
                 <span style="font-weight:bold;font-size:16px;font-family:monospace">&plus;</span> COURSE
               </button>
             </div>
-            
+
           </form>
         </div>
 
@@ -97,9 +97,9 @@
         </div>
       </fieldset>
     </ValidationObserver>
-    <table 
-      v-if="courses.length > 0" 
-      cellpadding="1px" 
+    <table
+      v-if="courses.length > 0"
+      cellpadding="1px"
       cellspacing="1px">
       <th>Course</th>
       <th>UNITS</th>
@@ -109,8 +109,8 @@
         v-for="(data, index) in courses"
         :key="index"
       >
-        <td 
-          id="dept" 
+        <td
+          id="dept"
           style="border: none">
           {{ data.coursename.toUpperCase() }}
         </td>
@@ -123,8 +123,8 @@
           >
         </td>
         <td>
-          <select 
-            v-model="data.grade" 
+          <select
+            v-model="data.grade"
             class="select">
             <option value="A">A</option>
             <option value="B">B</option>
@@ -132,8 +132,8 @@
             <option value="D">D</option>
             <option value="E">E</option>
             <option value="F">F</option>
-            <option 
-              value 
+            <option
+              value
               selected>Grade</option>
           </select>
         </td>
@@ -157,8 +157,8 @@
       </tr>
       <tr>
         <td style="border: none"/>
-        <td 
-          align="center" 
+        <td
+          align="center"
           style="border: none">
           <input
             id="button1"
@@ -171,18 +171,18 @@
       </tr>
     </table>
     <div class="holder">
-      <p 
-        v-if="courses.length == 0" 
+      <p
+        v-if="courses.length == 0"
         :style="{ color: '#3b5998' }">
         Please add some courses
       </p>
-      <p 
-        v-else-if="courses.length == 1" 
+      <p
+        v-else-if="courses.length == 1"
         :style="{ color: '#3b5998' }">
         You have {{ courses.length }} course
       </p>
-      <p 
-        v-else 
+      <p
+        v-else
         :style="{ color: '#3b5998' }">
         You have {{ courses.length }} courses
       </p>
@@ -465,7 +465,7 @@ p {
     font-weight: 800;
 }
 
-.container {
+.container-m {
     box-shadow: 0px 0px 40px rgb(255, 255, 255);
 }
 

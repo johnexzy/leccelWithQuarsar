@@ -19,11 +19,11 @@
         :key="i"
         :class="i == 0 ? 'carousel-item active' : 'carousel-item'"
       >
-        <img
+        <q-img
           :src="image | formatSrc"
           :alt="`slide ${i}`"
           class="d-block w-100"
-        >
+        />
       </div>
     </div>
 

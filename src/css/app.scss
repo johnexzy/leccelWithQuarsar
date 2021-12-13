@@ -1,2 +1,128 @@
 // app global css in SCSS form
-@import "./scss/style.scss"
+@import "./scss/style.scss";
+
+@mixin max-w($maxW) {
+  @media only screen and (max-width: $maxW) {
+    @content;
+  }
+}
+
+@mixin min-w($minW) {
+  @media only screen and (min-width: $minW) {
+    @content;
+  }
+}
+$text-primary: #172b4d;
+$text-secondary: #53617a;
+
+$bg-color: #f2f4f6;
+// $bg-color: #F5F9FF;
+// $text-secondary: #5f6368;
+// $text-secondary: rgba(88, 102, 126);
+// $text-tertiary: #9a9b9c;
+$text-tertiary: #8096a5;
+$text-muted: #6e7b93;
+
+$font-avenir: 'Avenir Next', Arial, sans-serif;
+$font-museo: 'Museo Sans', Arial, sans-serif;
+$font-system: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+  Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial,
+  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+$font-primary: $font-museo;
+$font-secondary: $font-system;
+.container {
+  width: 1170px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  @include max-w($breakpoint-xs) {
+    padding: 0 15px !important;
+  }
+}
+
+h1 {
+  line-height: 2.75rem;
+  @include max-w($breakpoint-xs) {
+    font-size: 1.6rem !important;
+    line-height: 2.75rem !important;
+  }
+}
+
+h2 {
+  @include max-w($breakpoint-xs) {
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+}
+
+bg-grey-3 {
+  background-color: $bg-color !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-h1 {
+  font-size: 2.7rem;
+  line-height: 3rem !important;
+}
+
+.text-h2 {
+  font-size: 2.125rem;
+  line-height: 2.5rem;
+}
+
+.text-h3 {
+  font-size: 1.725rem;
+  line-height: 2.75rem;
+}
+
+.text-h4 {
+  font-size: 1.45rem;
+  line-height: 2rem;
+}
+
+.text-h5 {
+  font-size: 1.125rem;
+  line-height: 1.8rem;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 1rem;
+    // line-height: 1.5rem;
+  }
+}
+
+.text-h6 {
+  font-size: 0.95rem;
+}
+
+.text-default {
+  font-family: $font-primary;
+  letter-spacing: -0.45px;
+}
+
+.text-body1 {
+  letter-spacing: 0;
+}
+
+.text-subtitle1 {
+  @media only screen and (max-width: 600px) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.font-secondary {
+  font-family: $font-secondary;
+}

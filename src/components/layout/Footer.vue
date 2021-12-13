@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-bottom">
-      <div class="container">
+      <div class="container-m">
         <div class="row">
           <div class="col-sm-12">
             <img

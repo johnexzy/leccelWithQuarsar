@@ -12,7 +12,7 @@
 
     <NavBar />
     <q-page-container>
-      <div class="container-scroller">
+      <div class="container-m-scroller">
         <div class="main-panel">
           <router-view />
         </div>

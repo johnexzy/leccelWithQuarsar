@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrapper">
-    <div class="container">
+    <div class="container-m">
       <div v-show="!state">
         <div class="row justify-center justify-content-center">
           <img src="~/assets/images/loader.gif" alt="" />

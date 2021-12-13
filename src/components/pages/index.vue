@@ -1,10 +1,10 @@
 <template>
   <div class="content-wrapper">
-    <div class="container">
+    <div class="container-m">
       <div class="row justify-center">
         <div :class="`col-12 col-md-8 col-lg-8  stretch-card grid-margin`">
           <div v-if="StickyPost.title">
-            <div :class="`container `">
+            <div :class="`container-m `">
               <q-card :class="`${$q.screen.lt.md ? '':'q-mr-md'}`">
                 <q-card-section>
                   <div class="q-px-md">
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div :class="`col-grow grid-margin`">
-          <q-card :class="`container ${$q.screen.lt.md ? '' : ''} `">
+          <q-card :class="`container-m ${$q.screen.lt.md ? '' : ''} `">
             <q-card-section class="q-pt-xs">
               <div class="text-h5 q-mt-sm q-mb-xs">Recently added</div>
             </q-card-section>
@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container-m">
       <div class="categories">
         <div class="text-center h1 text-white text-weight-bolder ">
           Explore Categories
@@ -116,7 +116,7 @@
         </div>
       </div>
     </div>
-    <div class="container q-mt-md">
+    <div class="container-m q-mt-md">
       <music-index :latest-music="LatestMusic" :popular-music="PopularMusic" />
 
       <!-- <div class="row" data-aos="fade-right">

@@ -3,7 +3,7 @@ export function someMutation (state) {
 }
 */
 export function setFeaturedPosts (state, posts) {
-  state.featuredPosts = posts.posts
+  state.featuredPosts = posts
 }
 export function setStickyPost (state, posts) {
   state.stickyPost = posts.posts[0]

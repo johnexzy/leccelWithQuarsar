@@ -1,7 +1,7 @@
 <template>
   <div class="content-wrapper">
 
-    <div class="container">
+    <div class="container-m">
       <div class="row">
         <div class="col-sm-12">
           <div

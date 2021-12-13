@@ -1,6 +1,6 @@
 <template>
   <div class="content-wrapper">
-    <div class="container">
+    <div class="container-m">
       <div class="col-sm-12">
         <div class="mb-3 text-light">
           <a
