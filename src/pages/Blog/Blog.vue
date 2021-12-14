@@ -171,7 +171,7 @@
             </div>
 
             <div class="q-my-xl">
-              This article was last updated on: {{ Post.modified }}
+              last updated on: {{ timeAgo(Post.modified) }}
             </div>
 
             <!-- <Newsletter></Newsletter> -->
