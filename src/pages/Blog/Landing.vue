@@ -19,11 +19,11 @@
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <div class="text-caption text-para-default q-mb-sm">
-              <!-- {{ Object.keys(StickyPost.categories)[0].toLocaleUpperCase() }} -->
+              {{ Object.keys(StickyPost.categories)[0].toLocaleUpperCase() }}
             </div>
             <router-link
               :to="{ name: 'blogs.blog', params: { blog: StickyPost.slug } }"
-              class="text-h3 text-default text-weight-bold"
+              class="text-h3 text-black text-weight-bold"
             >
               {{ StickyPost.title }}
             </router-link>
@@ -69,7 +69,7 @@
             <q-tabs
               v-model="tab"
               vertical
-              class="text-default text-left q-mb-xl"
+              class="text-left q-mb-xl secondfont"
               active-color="primary"
               style="height: unset!important"
             >
@@ -78,9 +78,10 @@
                 class="blog-category-tab"
                 no-caps
                 v-for="(cat, i) in Categories"
+
                 :key="i"
                 :name="cat.slug"
-                :label="cat.name"
+                :label="cat.name.toUpperCase()"
               />
             </q-tabs>
 
@@ -207,7 +208,7 @@
                     <router-link
                       tag="h3"
                       :to="{ name: 'blogs.blog', params: { blog: post.slug } }"
-                      class="cursor-pointer text-weight-bold text-h4 text-default"
+                      class="cursor-pointer text-weight-bold  text-h4 text-black"
                     >
                       {{ post.title }}
                     </router-link>
@@ -269,7 +270,7 @@ export default {
   },
   data() {
     return {
-      tab: 'product',
+      tab: 'album',
       email: '',
       // StickyPost: {}
     }

@@ -14,7 +14,7 @@ export async function fetchStickyPost({ commit }) {
       commit("setStickyPost", response.data);
       commit("setLoadingStickyPost");
 
-      console.log(response.data)
+      // console.log(response.data)
     });
   } catch (error) {
     commit("setLoadingStickyPost");
@@ -46,6 +46,7 @@ export async function fetchPost({ commit }, slug) {
     commit("setLoadingPost");
     // console.log('url', process.env.BLOG_API)
     await blogApi.get(`/posts/slug:${slug}`).then(response => {
+      console.log(response.data)
       commit("setPost", response.data);
       commit("setLoadingPost");
 

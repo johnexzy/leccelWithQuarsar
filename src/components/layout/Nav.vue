@@ -89,7 +89,7 @@
             </router-link>
           </li>
           <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
-            <router-link :to="{ name: 'AllSeries' }">
+            <router-link :to="{ name: 'blog' }">
               <q-icon name="rss_feed" size="md" />
               <p class="font-weight-bold text-uppercase">Blog</p>
             </router-link>

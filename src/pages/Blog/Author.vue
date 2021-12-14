@@ -11,7 +11,7 @@
                                 </q-avatar>
                             </div>
                             <div class="text-h6 text-weight-bold text-default">Thabo Mbeki</div>
-                            <div class="text-caption text-default">Head of Content @ StartupList  Africa (or, in plain English, I'm the guy responsible for ensuring that every blog post we publish is EPIC).</div>
+                            <div class="text-caption text-default">Head of Content @ leccel  Africa (or, in plain English, I'm the guy responsible for ensuring that every blog post we publish is EPIC).</div>
                             <ul class="flex q-pl-none" style="list-style: none;">
                                 <li><q-btn round flat text-color="grey-10" icon="share"/></li>
                                 <li><q-btn round flat text-color="grey-10" icon="attach_file"/></li>

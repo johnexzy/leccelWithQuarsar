@@ -2,12 +2,12 @@
   <footer>
     <div class="footer-bottom">
       <div class="container-m">
-        <div class="row">
+        <div class="row q-pa-md">
           <div class="col-sm-12">
             <img
               src="~/assets/images/LECCEL1.png"
-              alt="">
-            <div class="d-sm-flex justify-content-between align-items-center">
+              alt="Leccel" />
+            <div class="row justify-between">
               <div class="fs-14 font-weight-600">
                 © 2020 @ <a
                   href="https://www.leccel.net"
@@ -17,7 +17,7 @@
               </div>
               <div class="fs-14 font-weight-600">
                 Developed by <a
-                  href="https://github.com/johnexzy"
+                  href="https://twitter.com/@johnoba17"
                   target="_blank"
                   class="text-white">Johnexzy</a>
               </div>

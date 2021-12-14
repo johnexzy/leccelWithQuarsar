@@ -17,7 +17,8 @@
           <router-view />
         </div>
       </div>
-      <div class="d-flex align-items-center justify-content-center pad2x">
+
+      <div class="row align-items-center justify-center q-pa-md">
         <p class="q-mt-md">
           <router-link :to="{ name: 'about' }">About Us </router-link> |
           <router-link :to="{ name: 'contact' }">Contact Us</router-link> |

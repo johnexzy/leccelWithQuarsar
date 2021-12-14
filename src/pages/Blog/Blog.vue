@@ -237,6 +237,7 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('blog')
 export default {
   preFetch({ store, currentRoute }) {
+    // alert("John")
     return store.dispatch('blog/fetchPost', currentRoute.params.blog)
   },
   data() {
@@ -259,9 +260,9 @@ export default {
      */
     shareInfo() {
       return {
-        head: `${this.Post.title} - Startuplist Africa`,
+        head: `${this.Post.title} - leccel Africa`,
         text: this.Post.title.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, ''),
-        link: `https://startuplist.africa${this.$route.fullPath}`
+        link: `https://leccel.net${this.$route.fullPath}`
       }
     }
   },

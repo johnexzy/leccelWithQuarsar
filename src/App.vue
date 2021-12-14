@@ -42,7 +42,7 @@ export default {
       //   name: 'og:title',
       //   // optional; similar to titleTemplate, but allows templating with other meta properties
       //   template(ogTitle) {
-      //     return `${ogTitle} | StartupList Africa`
+      //     return `${ogTitle} | leccel Africa`
       //   }
       // }
     }
