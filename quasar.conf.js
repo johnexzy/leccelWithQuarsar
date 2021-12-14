@@ -122,7 +122,7 @@ module.exports = function(/* ctx */) {
         theme_color: "#470116ea",
         icons: [
           {
-            src: "icons/apple-touch-icon-120x120.png",
+            src: "icons/icon-128x128.png",
             sizes: "128x128",
             type: "image/png"
           },
