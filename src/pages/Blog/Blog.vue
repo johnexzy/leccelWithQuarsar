@@ -182,7 +182,7 @@
       </div>
     </section>
 
-    <!-- <section class="q-py-xl">
+    <section class="q-py-xl">
       <div class="container">
         <div class="text-subtitle1 text-default q-mb-xl">INTERESTING READS</div>
         <div class="row q-col-gutter-lg">
@@ -224,7 +224,7 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- <get-access-to-more-features /> -->
   </q-page>
