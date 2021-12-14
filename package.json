@@ -10,7 +10,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar dev",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar build"
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar build -m pwa"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

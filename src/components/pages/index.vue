@@ -55,7 +55,7 @@
                         color="primary"
                         rounded
                         no-caps
-                        :to="{ name: 'Series', params: { short_url: StickyPost.slug } }"
+                        :to="{ name: 'blogs.blog', params: { blog: StickyPost.slug } }"
                         >Read More</q-btn
                       >
                       <!-- </div> -->
@@ -98,7 +98,7 @@
             </q-card-section>
             <q-separator></q-separator>
             <q-card-actions vertical>
-              <q-btn color="primary" icon="read_more" label="Load More" @click="onClick" />
+              <q-btn color="primary" icon="read_more" label="Load More" to="/blog" />
             </q-card-actions>
           </q-card>
         </div>
