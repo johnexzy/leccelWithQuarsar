@@ -47,9 +47,9 @@
             </div>
           </div>
           <hr />
-          <div class="row q-my-lg">
-            <div class="col-sm-12">
-              <div class="row justify-content-center justify-center align-items-center">
+          <div class="row justify-center justify-content-center q-my-lg">
+            <div class="col-12 col-md-12 col-sm-10">
+
                 <aplayer
                   :music="{
                     title: musicObj.music_name,
@@ -61,7 +61,6 @@
                   theme="pic"
                   autoplay
                 />
-              </div>
             </div>
           </div>
           <!-- <div class="row">

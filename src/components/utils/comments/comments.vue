@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
       <div class="post-comment-section q-mx-md">
         <i class="mdi mdi-comment" />
         <span class="count text-monospace fs-13">({{ comments.length }})</span>
@@ -30,13 +30,13 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6 q-px-md">
+    <div class="col-12 col-lg-6 col-md-6 col-sm-12 q-px-md">
       <h1 class="text-center my-3">Add Your Comment</h1>
-      <div class="col-lg-12 mb-5 mb-sm-2">
+
         <ValidationObserver v-slot="{ passes }">
           <form @submit.prevent="passes(addComment)">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group q-my-md">
                   <ValidationProvider v-slot="{ errors }" name="comment" rules="required">
                     <q-input
@@ -55,7 +55,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group q-my-md">
                   <q-input
                     v-model="name"
@@ -80,7 +80,6 @@
             </div>
           </form>
         </ValidationObserver>
-      </div>
     </div>
   </div>
 </template>
