@@ -111,7 +111,7 @@
           Explore Categories
         </div>
         <div class="row justify-center">
-          <q-card :class="`shadow-5 text-white q-ma-md cursor-pointer bg-red-${n+3}`" v-for="c, n in Categories" :key="n">
+          <q-card :class="`shadow-5 text-white q-ma-md cursor-pointer bg-red-${n+3}`" v-for="c, n in Categories" :key="n" @click="$router.push({name: 'blog', query:{categories: c.slug} })">
             <q-card-section> {{c.name | capitalize}} </q-card-section>
           </q-card>
         </div>

@@ -99,11 +99,15 @@
                     :to="{ name: 'Music', params: { short_url: music.short_url } }"
                     tag="div"
                     style="cursor: pointer"
-                    class="col-md-3 grid-margin q-pa-sm stretch-card"
+                    class="col-12 col-sm-6 col-xs-12 col-lg-3 col-md-4 grid-margin q-pa-sm stretch-card"
                   >
-                    <q-card class="music">
+                    <q-card class="music" style="width: 100%; border-radius: 10px">
                       <div class="card-img-holder">
-                        <q-img class="col-3" :src="music.images[0]" alt="" />
+                        <q-img
+                          :src="music.images[0]"
+                          style="border-radius: 10px 10px 0 0"
+                          :alt="music.music_name"
+                        />
                       </div>
 
                       <q-card-section class="">
