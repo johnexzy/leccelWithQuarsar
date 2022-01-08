@@ -9,23 +9,23 @@
       <q-card v-show="state" square class="card">
         <!-- {{ musicObj.music_name }} -->
         <div class="card-header">
-          <p class="font-weight-bold" style="text-align: center">
+          <p class="text-h2" style="text-align: center">
             {{ musicObj.music_name }}
           </p>
         </div>
-        <q-card-section class="card-body">
+        <q-card-section class="">
           <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-12 col-md-6 col-lg-6 col-sm-12">
               <div class="row">
                 <div class="col-12 col-lg-12 q-mb-auto mb-sm-2">
-                  <carousel-img :images="musicObj.images" />
+                  <carousel-img class="q-pa-md" :images="musicObj.images" />
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-6 col-sm-6">
-              <b>Download {{ musicObj.music_name }} MP3</b>
+            <div class="col-12 col-md-6 col-sm-12">
+              <b class="q-py-md h1">Download {{ musicObj.music_name }} MP3</b>
               <q-separator />
-
+              <p class="q-py-md text-subtitle1">{{ musicObj.music_details }}</p>
               <q-btn
                 type="a"
                 v-for="(f, i) in musicObj.audio"
@@ -33,20 +33,21 @@
                 :href="f.song_url | formatSrc"
                 target="_blank"
                 no-caps
-                flat
+                size="lg"
+                color="primary"
                 :label="
                   `Download MP3 (` +
                   ((Number(f.song_bytes) / (1024 * 1024)).toFixed(2) + `) mb`)
                 "
               >
                 <template>
-                  <q-icon size="14px" class="q-ml-xs" name="open_in_new" />
+                  <q-icon size="md" class="q-ml-xs" name="download" />
                 </template>
               </q-btn>
             </div>
           </div>
           <hr />
-          <div class="row q-mt-md">
+          <div class="row q-my-lg">
             <div class="col-sm-12">
               <div class="row justify-content-center justify-center align-items-center">
                 <aplayer
@@ -56,6 +57,8 @@
                     src: meta.audio,
                     pic: meta.image,
                   }"
+                  repeat="music"
+                  theme="pic"
                   autoplay
                 />
               </div>
@@ -78,13 +81,8 @@
             />
           </div>
         </div> -->
-          <div class="row">
-            <div class="col-sm-12">
-              <hr />
-              <share :phead="musicObj.music_name" :pbody="musicObj.music_details" />
-
-              <hr />
-            </div>
+          <div class="row justify-content-center justify-center align-items-center">
+            <share :phead="musicObj.music_name" :pbody="musicObj.music_details" />
           </div>
           <div v-if="rmusicCount > 0" class="row d-block q-my-lg mb-4 mt-4 text-center">
             <h3>You may also like:</h3>
@@ -94,18 +92,35 @@
               v-for="(rmusic, i) in relatedmusicArr"
               :key="i"
               :to="{ name: 'Music', params: { short_url: rmusic.short_url } }"
-              class="col-12 col-lg-3 col-md-3 grid-margin stretch-card"
               tag="div"
+              style="cursor: pointer"
+              class="col-12 col-sm-6 col-xs-12 col-lg-3 col-md-4 grid-margin q-pa-sm stretch-card"
             >
-              <q-card class="card card-rounded shadow music">
+              <q-card class="music shadow-8" style="width: 100%; border-radius: 10px">
                 <div class="card-img-holder">
-                  <img :src="rmusic.images[0]" alt="" class="card-img" />
+                  <q-img
+                    :src="rmusic.images[0]"
+                    style="border-radius: 10px 10px 0 0"
+                    alt=""
+                  />
                 </div>
 
-                <q-card-section class="card-body p-2" style="background: #eee">
-                  <h3 class="font-weight-200 mb-2" style="color: #561529">
-                    (Download) - {{ rmusic.music_name }}
-                  </h3>
+                <q-card-section class="">
+                  <h4 class="q-mb-sm wrap" style="color: #561529">
+                    (Download MP3) - {{ rmusic.music_name }}
+                  </h4>
+                  <div class="row justify-between">
+                    <p class="d-inline L5 mb-0">
+                      <i class="mdi mdi-artist" />
+                      <router-link
+                        :to="`/search/music/${rmusic.artist}`"
+                        style="text-decoration: none"
+                        class="fs-15 text-muted text-decoration-none"
+                      >
+                        {{ rmusic.artist }}
+                      </router-link>
+                    </p>
+                  </div>
                 </q-card-section>
               </q-card>
             </router-link>
@@ -113,7 +128,11 @@
 
           <div class="q-mt-md" />
 
-          <comment :comment-key="musicObj.music_key" :comments="musicObj.comments" />
+          <comment
+            @addComments="addComments"
+            :comment-key="musicObj.music_key"
+            :comments="musicObj.comments"
+          />
         </q-card-section>
       </q-card>
     </div>
@@ -186,6 +205,9 @@ export default {
         });
         this.state = true;
       });
+    },
+    addComments(val) {
+      this.musicObj.comments = val;
     },
   },
   meta() {

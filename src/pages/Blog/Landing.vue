@@ -270,7 +270,7 @@ export default {
   },
   data() {
     return {
-      tab: 'album',
+      tab: this.$route.query.categories || 'album',
       email: '',
       // StickyPost: {}
     }

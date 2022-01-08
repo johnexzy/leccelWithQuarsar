@@ -14,6 +14,7 @@
           dense
           outlined
           v-model="query"
+          @keydown.enter="changeRoute()"
           label="Search music"
         >
           <template v-slot:append>
@@ -82,16 +83,9 @@
             </router-link>
           </li>
           <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
-            <router-link :to="{ name: 'AllMovies' }">
-              <!-- <i class="mdi mdi-24px mdi-video" /> -->
-              <q-icon name="library_music" size="md" />
-              <p class="font-weight-bold text-uppercase">Album</p>
-            </router-link>
-          </li>
-          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
             <router-link :to="{ name: 'blog' }">
               <q-icon name="rss_feed" size="md" />
-              <p class="font-weight-bold text-uppercase">Blog</p>
+              <p class="font-weight-bold text-uppercase">News</p>
             </router-link>
           </li>
         </ul>
@@ -122,7 +116,8 @@ export default {
   },
   methods: {
     changeRoute() {
-      this.$router.push(`/search/music/${encodeURI(this.query)}`);
+      if(this.query.length > 2)
+        this.$router.push(`/search/music/${encodeURI(this.query)}`);
     },
     addSticky() {
       this.sticky = window.pageYOffset > 130;

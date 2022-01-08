@@ -10,7 +10,7 @@
                   <div class="q-px-md">
                     <div class="row justify-center">
                       <div
-                        class="col-12 col-md-8 pt-6 pb-6 align-self-center"
+                        class="col-12 col-md-7 pt-6 pb-6 align-self-center"
                         style="min-height: 200px"
                       >
                         <h1 class="nunito q-mb-md font-weight-bold">
@@ -34,14 +34,15 @@
                           >
                         </div>
                       </div>
-                      <div class="col-12 col-md-4 col-sm-6 q-mt-md">
+                      <q-separator vertical v-show="$q.screen.gt.sm"></q-separator>
+                      <div class="col-12 col-md-4 col-sm-6 q-mx-md">
                         <div
                           class="flex justify-content-center align-items-center text-center"
                         >
                           <q-img
                             v-if="StickyPost.featured_image"
                             :src="StickyPost.featured_image"
-                            class="img-rounded shadow-4"
+                            class="img-translate shadow-4"
                             :alt="StickyPost.title"
                           />
                         </div>
@@ -110,7 +111,7 @@
           Explore Categories
         </div>
         <div class="row justify-center">
-          <q-card :class="`shadow-5 text-white q-ma-md cursor-pointer bg-teal-${n+3}`" v-for="c, n in Categories" :key="n">
+          <q-card :class="`shadow-5 text-white q-ma-md cursor-pointer bg-red-${n+3}`" v-for="c, n in Categories" :key="n">
             <q-card-section> {{c.name | capitalize}} </q-card-section>
           </q-card>
         </div>
@@ -152,3 +153,8 @@ export default {
   },
 };
 </script>
+<style>
+.img-translate{
+  border-radius: 10px 0;
+}
+</style>

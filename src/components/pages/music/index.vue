@@ -158,7 +158,11 @@
               <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages">
               </q-pagination> -->
               <div class="q-pa-lg flex flex-center">
-                <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages" input />
+                <q-pagination
+                  v-model="current_page"
+                  :max="AllMusicMeta.total_pages"
+                  input
+                />
               </div>
             </q-card>
           </div>
@@ -242,10 +246,11 @@ export default {
       return ss.toLocaleDateString();
     },
   },
-    meta() {
+  meta() {
     const image = "../../../assets/images/LECCEL1.png";
-    const title = "Discover latest and trending Musicon Leccel.net";
-    const description = "Search Music by title or artist. stream online or download for free";
+    const title = "Discover latest and trending Music on Leccel.net";
+    const description =
+      "Search Music by title or artist. stream online or download for free";
 
     return {
       // Title tag

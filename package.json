@@ -2,15 +2,15 @@
   "name": "leccel",
   "version": "0.0.1",
   "description": "A music media",
-  "productName": "Leccel Quasar App",
+  "productName": "Leccel Net",
   "author": "Johnexzy <obajohn75@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar dev",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar build -m pwa"
+    "dev": "cross-env quasar dev",
+    "build": "cross-env quasar build -m pwa"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
@@ -49,7 +49,7 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": ">= 10.18.1",
+    "node": ">= 10.18.1 < 16.13.1",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }

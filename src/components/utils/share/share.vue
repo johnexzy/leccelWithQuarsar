@@ -1,12 +1,11 @@
 <template>
   <div class="d-flex justify-content-center align-items-center">
-    <button
-      type="button"
+    <q-btn
       class="btn btn-info btn-icon-text"
       @click="sharePost()"
     >
       <h4 class="mdi mdi-share btn-icon-prepend">&nbsp; Share</h4>
-    </button>
+    </q-btn>
   </div>
 </template>
 

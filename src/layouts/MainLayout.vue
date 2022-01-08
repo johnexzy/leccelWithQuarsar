@@ -21,7 +21,6 @@
       <div class="row align-items-center justify-center q-pa-md">
         <p class="q-mt-md">
           <router-link :to="{ name: 'about' }">About Us </router-link> |
-          <router-link :to="{ name: 'contact' }">Contact Us</router-link> |
           <router-link :to="{ name: 'privacy' }">Privacy Policy</router-link>
         </p>
       </div>

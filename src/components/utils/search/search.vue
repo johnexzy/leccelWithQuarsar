@@ -2,32 +2,67 @@
   <div class="content-wrapper">
     <div class="container-m">
       <div class="col-sm-12">
-        <div class="mb-3 text-light">
+        <div class="q-mb-md text-light" style="font-size: 18px">
           <a
             href="/"
-            class="mb-1 font-weight-bold pad2x text-decoration-none text-light"
-          >Home</a
+            class="q-mb-sm font-weight-bold pad2x text-decoration-none text-white"
+            >Home</a
           >
           &RightArrow;
           <a
             href="#"
-            class="mb-1 font-weight-bold pad2x text-decoration-none text-light"
-          >Search Result for ({{ query }})
+            class="q-mb-sm font-weight-bold pad2x text-decoration-none text-white"
+            >results for ({{ query }})
           </a>
         </div>
       </div>
       <div v-show="!state">
         <div class="d-flex justify-content-center">
-          <img
-            src="~/assets/images/loader.gif"
-            alt="" >
+          <img src="~/assets/images/loader.gif" alt="" />
         </div>
       </div>
-      <div
-        v-show="state"
-        class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-          <div class="card card-square">
+
+      <q-card class="q-pa-md">
+        <div class="row show-music">
+          <router-link
+            v-for="(rmusic, i) in musicSearch"
+            :key="i"
+            :to="{ name: 'Music', params: { short_url: rmusic.short_url } }"
+            tag="div"
+            style="cursor: pointer"
+            class="col-12 col-sm-6 col-xs-12 col-lg-3 col-md-4 grid-margin q-pa-sm stretch-card"
+          >
+            <q-card class="music shadow-5" style="width: 100%; border-radius: 10px">
+              <div class="card-img-holder">
+                <q-img
+                  :src="rmusic.images[0] | formatSrc"
+                  style="border-radius: 10px 10px 0 0"
+                  alt=""
+                />
+              </div>
+
+              <q-card-section class="">
+                <h4 class="q-mb-sm wrap" style="color: #561529">
+                  (Download MP3) - {{ rmusic.music_name }}
+                </h4>
+                <div class="row justify-between">
+                  <p class="d-inline L5 mb-0">
+                    <i class="mdi mdi-artist" />
+                    <router-link
+                      :to="`/search/music/${rmusic.artist}`"
+                      style="text-decoration: none"
+                      class="fs-15 text-muted text-decoration-none"
+                    >
+                      {{ rmusic.artist }}
+                    </router-link>
+                  </p>
+                </div>
+              </q-card-section>
+            </q-card>
+          </router-link>
+        </div>
+      </q-card>
+      <!-- <div class="card card-square">
             <div class="card-body dashboard-tabs p-0">
               <ul
                 class="nav nav-tabs"
@@ -192,15 +227,12 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div> -->
     </div>
   </div>
 </template>
 
 <script>
-
 // import timeago from "timeago-simple";
 
 export default {
@@ -220,19 +252,13 @@ export default {
   },
   computed: {
     seriesSearch() {
-      return this.search
-        .filter((s) => s.group === "series")
-        .map((x) => x.data)[0];
+      return this.search.filter((s) => s.group === "series").map((x) => x.data)[0];
     },
     musicSearch() {
-      return this.search
-        .filter((s) => s.group === "music")
-        .map((x) => x.data)[0];
+      return this.search.filter((s) => s.group === "music").map((x) => x.data)[0];
     },
     videoSearch() {
-      return this.search
-        .filter((s) => s.group === "movies")
-        .map((x) => x.data)[0];
+      return this.search.filter((s) => s.group === "movies").map((x) => x.data)[0];
     },
   },
   watch: {
@@ -264,5 +290,8 @@ export default {
       return ss.toLocaleDateString();
     },
   },
+  meta(){
+
+  }
 };
 </script>

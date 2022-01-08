@@ -64,11 +64,11 @@ const routes = [
         name: "about",
         component: () => import("components/pages/aboutus.vue")
       },
-      {
-        path: "contactus",
-        name: "contact",
-        component: () => import("components/pages/contactus.vue")
-      },
+      // {
+      //   path: "contactus",
+      //   name: "contact",
+      //   component: () => import("components/pages/contactus.vue")
+      // },
       {
         path: "privacy",
         name: "privacy",
