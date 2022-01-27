@@ -70,28 +70,22 @@
     <div :class="`row text-center  menu-bottom ${sticky ? 'sticky' : ''}`">
       <div class="fit row justify-center items-end content-start">
         <ul class="row q-ma-none" style="margin-left: -25px">
-          <li class="q-pt-sm q-mr-sm shadow-10" style="width: 62px; height: 62px">
+          <li class="q-pt-sm q-mr-sm shadow-10">
             <router-link :to="{ name: 'home' }">
               <q-icon name="home" size="md" />
-              <p class="font-weight-bold text-uppercase">Home</p>
+              <!-- <p class="font-weight-bold text-uppercase">Home</p> -->
             </router-link>
           </li>
-          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
+          <li class="q-pt-sm q-mx-sm shadow-10" >
             <router-link :to="{ name: 'AllMusic' }">
               <q-icon name="audiotrack" size="md" />
-              <p class="text-uppercase">Music</p>
+              <!-- <p class="text-uppercase">Music</p> -->
             </router-link>
           </li>
-          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
+          <li class="q-pt-sm q-mx-sm shadow-10">
             <router-link :to="{ name: 'blog' }">
               <q-icon name="rss_feed" size="md" />
-              <p class="font-weight-bold text-uppercase">News</p>
-            </router-link>
-          </li>
-          <li class="q-pt-sm q-mx-sm shadow-10" style="width: 62px; height: 62px">
-            <router-link :to="{ name: 'blog' }">
-              <q-icon name="rss_feed" size="md" />
-              <p class="font-weight-bold text-uppercase">Entertainment</p>
+              <!-- <p class="font-weight-bold text-uppercase">News</p> -->
             </router-link>
           </li>
         </ul>
@@ -131,3 +125,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+li {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px
+}
+</style>
