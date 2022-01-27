@@ -13,7 +13,7 @@
                         class="col-12 col-md-7 pt-6 pb-6 align-self-center"
                         style="min-height: 200px"
                       >
-                        <h1 class="nunito q-mb-md font-weight-bold">
+                        <h1 class="nunito q-mb-md font-weight-bold cursor-pointer" @click="$router.push({ name: 'blogs.blog', params: { blog: StickyPost.slug } })">
                           {{ StickyPost.title }}
                         </h1>
                         <div
@@ -74,7 +74,12 @@
             </q-card-section>
             <q-card-section>
               <q-list class="" separator>
-                <q-item clickable v-for="(n, i) in FeaturedPosts" :key="i">
+                <q-item clickable  v-for="(n, i) in FeaturedPosts" :key="i" :to="{ name: 'blogs.blog', params: { blog: n.slug } }">
+                  <q-item-section  avatar v-if="n.featured_image">
+                    <q-avatar rounded size="xl">
+                      <q-img :src="n.featured_image" />
+                    </q-avatar>
+                  </q-item-section>
                   <q-item-section>
                     <q-item-label
                       ><div class="text-subtitle1 text">{{ n.title }}</div>
