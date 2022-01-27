@@ -1,11 +1,12 @@
 <template>
   <q-page>
     <!-- header -->
-    <section class="hero-wrapper q-py-xl" style="background: #470116ea;">
+    <section class="hero-wrapper q-py-xl" style="background: #470116ea">
       <div class="container">
         <h1 class="text-h2 text-white q-mb-md">Leccel's Blog</h1>
         <h2 class="text-subtitle1 text-white">
-          Get the latest gist news and moments on leccel.net. Download latest and trending music for free.
+          Get the latest gist news and moments on leccel.net. Download latest and trending
+          music for free.
         </h2>
       </div>
     </section>
@@ -18,19 +19,25 @@
             <img class="full-width" :src="StickyPost.featured_image" alt="" />
           </div>
           <div class="col-12 col-md-6 col-lg-6">
-            <div class="text-caption text-para-default q-mb-sm">
+            <router-link
+              tag="div"
+              :to="{
+                name: 'blog',
+                query: {
+                  categories: Object.keys(StickyPost.categories)[0].toLocaleLowerCase(),
+                },
+              }"
+              class="text-caption text-para-default q-mb-sm cursor-pointer"
+            >
               {{ Object.keys(StickyPost.categories)[0].toLocaleUpperCase() }}
-            </div>
+            </router-link>
             <router-link
               :to="{ name: 'blogs.blog', params: { blog: StickyPost.slug } }"
               class="text-h3 text-black text-weight-bold"
             >
               {{ StickyPost.title }}
             </router-link>
-            <div
-              v-html="StickyPost.excerpt"
-              class="text-subtitle q-my-sm"
-            ></div>
+            <div v-html="StickyPost.excerpt" class="text-subtitle q-my-sm"></div>
             <div class="row">
               <div class="col-12 col-md-7 col-lg-7">
                 <q-list>
@@ -38,14 +45,12 @@
                     <q-item-section avatar>
                       <q-avatar size="30px">
                         <q-img
-                          style="width: 30px; height: 30px;"
+                          style="width: 30px; height: 30px"
                           :src="StickyPost.author.avatar_URL"
                         />
                       </q-avatar>
                     </q-item-section>
-                    <q-item-section>{{
-                      StickyPost.author.name
-                    }}</q-item-section>
+                    <q-item-section>{{ StickyPost.author.name }}</q-item-section>
                     <q-item-section side>{{
                       timeAgo(StickyPost.modified)
                     }}</q-item-section>
@@ -71,14 +76,13 @@
               vertical
               class="text-left q-mb-xl secondfont"
               active-color="primary"
-              style="height: unset!important"
+              style="height: unset !important"
             >
               <q-tab
-                style="font-size: 1.2rem;"
+                style="font-size: 1.2rem"
                 class="blog-category-tab"
                 no-caps
                 v-for="(cat, i) in Categories"
-
                 :key="i"
                 :name="cat.slug"
                 :label="cat.name.toUpperCase()"
@@ -129,26 +133,18 @@
             <q-tab-panels
               v-model="tab"
               animated
-              swipeable
               vertical
               transition-prev="jump-up"
               transition-next="jump-up"
             >
-              <q-tab-panel
-                v-for="(cat, i) in Categories"
-                :key="i"
-                :name="cat.slug"
-              >
-                <div
-                  v-if="LoadingPostsByCategories"
-                  class="row q-col-gutter-lg"
-                >
+              <q-tab-panel v-for="(cat, i) in Categories" :key="i" :name="cat.slug">
+                <div v-if="LoadingPostsByCategories" class="row q-col-gutter-lg">
                   <q-card
                     v-for="i in 4"
                     :key="i"
                     class="col-12 col-md-6 col-lg-6 q-mb-xl"
                     flat
-                    style="max-width: 300px; background:transparent"
+                    style="max-width: 300px; background: transparent"
                   >
                     <q-item>
                       <q-item-section avatar>
@@ -208,7 +204,7 @@
                     <router-link
                       tag="h3"
                       :to="{ name: 'blogs.blog', params: { blog: post.slug } }"
-                      class="cursor-pointer text-weight-bold  text-h4 text-black"
+                      class="cursor-pointer text-weight-bold text-h4 text-black"
                     >
                       {{ post.title }}
                     </router-link>
@@ -224,14 +220,12 @@
                             <q-item-section avatar>
                               <q-avatar size="30px">
                                 <q-img
-                                  style="width: 30px; height: 30px;"
+                                  style="width: 30px; height: 30px"
                                   :src="post.author.avatar_URL"
                                 />
                               </q-avatar>
                             </q-item-section>
-                            <q-item-section>{{
-                              post.author.name
-                            }}</q-item-section>
+                            <q-item-section>{{ post.author.name }}</q-item-section>
                             <q-item-section side>{{
                               timeAgo(post.modified)
                             }}</q-item-section>
@@ -258,46 +252,46 @@
 <script>
 // import GetAccessToMoreFeatures from '../../components/GetAccessToMoreFeatures.vue'
 // import blog from '../../store/blog'
-import { createNamespacedHelpers } from 'vuex'
-const { mapGetters, mapActions } = createNamespacedHelpers('blog')
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers("blog");
 export default {
   preFetch({ store }) {
     // store.registerModule('blog', blog)
-    return store.dispatch('blog/fetchStickyPost')
+    return store.dispatch("blog/fetchStickyPost");
   },
   components: {
     // GetAccessToMoreFeatures
   },
   data() {
     return {
-      tab: this.$route.query.categories || 'album',
-      email: '',
+      tab: this.$route.query.categories || "album",
+      email: "",
       // StickyPost: {}
-    }
+    };
   },
   watch: {
     tab(val) {
-      this.fetchPostsByCategories(val)
-    }
+      this.fetchPostsByCategories(val);
+    },
   },
   mounted() {
-    this.fetchCategories()
-    this.fetchPostsByCategories()
+    this.fetchCategories();
+    this.fetchPostsByCategories(this.tab);
     // this.StickyPost = this.FeaturedPostsMeta.posts[0]
   },
   computed: {
     ...mapGetters([
       // 'FeaturedPosts',
-      'StickyPost',
-      'Categories',
-      'LoadingPostsByCategories',
-      'PostsByCategories',
-      'LoadingCategories',
-      'LoadingStickyPost'
+      "StickyPost",
+      "Categories",
+      "LoadingPostsByCategories",
+      "PostsByCategories",
+      "LoadingCategories",
+      "LoadingStickyPost",
     ]),
   },
   methods: {
-    ...mapActions(['fetchCategories', 'fetchPostsByCategories']),
+    ...mapActions(["fetchCategories", "fetchPostsByCategories"]),
     // subscribe() {
     //   this.$refs.email.validate()
     //   if (this.$refs.email.hasError) {
@@ -312,11 +306,11 @@ export default {
     // this.$store.unregisterModule('blog')
   },
   meta() {
-    const title = 'Leccel\'s Blog'
+    const title = "Leccel's Blog";
     const description =
-      'Leccel.net is the best place to get entertained. Get latest songs gist, news and more'
+      "Leccel.net is the best place to get entertained. Get latest songs gist, news and more";
     // const image = '../assets/img/world-map-vector.svg'
-    const image = window.location.origin + '/opengraphs/home.png'
+    const image = window.location.origin + "/opengraphs/home.png";
 
     return {
       // Title tag
@@ -325,57 +319,57 @@ export default {
       // meta tags
       meta: {
         description: {
-          name: 'description',
-          content: description
+          name: "description",
+          content: description,
         },
 
         // Open Graph Tags
         ogTitle: {
-          name: 'og:title',
-          content: title
+          name: "og:title",
+          content: title,
         },
         ogDescription: {
-          name: 'og:description',
-          content: description
+          name: "og:description",
+          content: description,
         },
         ogURL: {
-          property: 'og:url',
-          content: window.location.href
+          property: "og:url",
+          content: window.location.href,
         },
         ogImage: {
-          property: 'og:image',
-          content: image
+          property: "og:image",
+          content: image,
         },
-        twitterCard: { name: 'twitter:card', content: 'summary_large_image' },
+        twitterCard: { name: "twitter:card", content: "summary_large_image" },
         twitterTitle: {
-          name: 'twitter:title',
-          content: title
+          name: "twitter:title",
+          content: title,
         },
         twitterDescription: {
-          name: 'twitter:description',
-          content: description
+          name: "twitter:description",
+          content: description,
         },
         twitterImage: {
-          name: 'twitter:image',
-          content: image
+          name: "twitter:image",
+          content: image,
         },
         // Google / Schema.org markup:
         schemaName: {
-          itemprop: 'name',
-          content: title
+          itemprop: "name",
+          content: title,
         },
         schemaDesc: {
-          itemprop: 'description',
-          content: description
+          itemprop: "description",
+          content: description,
         },
         schemaImage: {
-          itemprop: 'image',
-          content: image
-        }
-      }
-    }
-  }
-}
+          itemprop: "image",
+          content: image,
+        },
+      },
+    };
+  },
+};
 </script>
 
 <style>

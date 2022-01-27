@@ -1,11 +1,26 @@
 <template>
   <div class="content-wrapper">
+    <div class="container">
+      <div class="categories">
+        <div class="text-center h1 text-white text-weight-bolder">Explore Categories</div>
+        <div class="row justify-center">
+          <q-card
+            :class="`shadow-5 text-white q-ma-md cursor-pointer bg-red-${n + 3}`"
+            v-for="(c, n) in Categories"
+            :key="n"
+            @click="$router.push({ name: 'blog', query: { categories: c.slug } })"
+          >
+            <q-card-section> {{ c.name | capitalize }} </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </div>
     <div class="container-m">
       <div class="row justify-center">
         <div :class="`col-12 col-md-8 col-lg-8  stretch-card grid-margin`">
           <div v-if="StickyPost.title">
             <div :class="`container-m `">
-              <q-card :class="`${$q.screen.lt.md ? '':'q-mr-md'}`">
+              <q-card :class="`${$q.screen.lt.md ? '' : 'q-mr-md'}`">
                 <q-card-section>
                   <div class="q-px-md">
                     <div class="row justify-center">
@@ -13,7 +28,15 @@
                         class="col-12 col-md-7 pt-6 pb-6 align-self-center"
                         style="min-height: 200px"
                       >
-                        <h1 class="nunito q-mb-md font-weight-bold cursor-pointer" @click="$router.push({ name: 'blogs.blog', params: { blog: StickyPost.slug } })">
+                        <h1
+                          class="nunito q-mb-md font-weight-bold cursor-pointer"
+                          @click="
+                            $router.push({
+                              name: 'blogs.blog',
+                              params: { blog: StickyPost.slug },
+                            })
+                          "
+                        >
                           {{ StickyPost.title }}
                         </h1>
                         <div
@@ -30,7 +53,12 @@
                             :key="i"
                             size="md"
                             clickable
-                            @click="$router.push({name: 'blog', query:{categories: n.slug} })"
+                            @click="
+                              $router.push({
+                                name: 'blog',
+                                query: { categories: n.slug },
+                              })
+                            "
                             class="text-primary shadow-1 cursor-pointer"
                             >{{ n.name }}</q-chip
                           >
@@ -76,15 +104,22 @@
             </q-card-section>
             <q-card-section>
               <q-list class="" separator>
-                <q-item clickable  v-for="(n, i) in FeaturedPosts" :key="i" :to="{ name: 'blogs.blog', params: { blog: n.slug } }">
-                  <q-item-section  avatar v-if="n.featured_image">
+                <q-item
+                  clickable
+                  v-for="(n, i) in FeaturedPosts"
+                  :key="i"
+                  :to="{ name: 'blogs.blog', params: { blog: n.slug } }"
+                >
+                  <q-item-section avatar v-if="n.featured_image">
                     <q-avatar rounded size="xl">
                       <q-img :src="n.featured_image" />
                     </q-avatar>
                   </q-item-section>
                   <q-item-section>
                     <q-item-label
-                      ><div class="text-subtitle1 text">{{ n.title }}</div>
+                      ><div class="text-subtitle1 text wrap">
+                        {{ n.title | truncate }}
+                      </div>
                     </q-item-label>
 
                     <q-item-label caption>
@@ -112,18 +147,7 @@
         </div>
       </div>
     </div>
-    <div class="container-m">
-      <div class="categories">
-        <div class="text-center h1 text-white text-weight-bolder ">
-          Explore Categories
-        </div>
-        <div class="row justify-center">
-          <q-card :class="`shadow-5 text-white q-ma-md cursor-pointer bg-red-${n+3}`" v-for="c, n in Categories" :key="n" @click="$router.push({name: 'blog', query:{categories: c.slug} })">
-            <q-card-section> {{c.name | capitalize}} </q-card-section>
-          </q-card>
-        </div>
-      </div>
-    </div>
+
     <div class="container-m q-mt-md">
       <music-index :latest-music="LatestMusic" :popular-music="PopularMusic" />
 
@@ -156,12 +180,12 @@ export default {
       // "Categories",
     ]),
 
-    ...mapGetters("blog", ["FeaturedPosts", "StickyPost", "Categories" ]),
+    ...mapGetters("blog", ["FeaturedPosts", "StickyPost", "Categories"]),
   },
 };
 </script>
 <style>
-.img-translate{
+.img-translate {
   border-radius: 10px 0;
 }
 </style>

@@ -45,6 +45,9 @@ export default ({ Vue }) => {
       },
       capitalize(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
+      },
+      truncate(string) {
+        return string.substr(0, 20)+"..."
       }
     }
   });
