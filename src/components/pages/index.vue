@@ -29,6 +29,8 @@
                             v-for="(n, i) in StickyPost.categories"
                             :key="i"
                             size="md"
+                            clickable
+                            @click="$router.push({name: 'blog', query:{categories: n.slug} })"
                             class="text-primary shadow-1 cursor-pointer"
                             >{{ n.name }}</q-chip
                           >
