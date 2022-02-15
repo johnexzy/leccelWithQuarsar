@@ -3,77 +3,38 @@
     <div class="container-m">
       <div class="row">
         <div class="col-sm-12">
-          <div
-            class="card card-square"
-            data-aos="fade-up">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-8 mb-5 mb-sm-2 border-right">
-                  <h1 class="mt-5 text-center mb-5">Contact Us</h1>
-                  <form>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <textarea
-                            id="message"
-                            class="form-control textarea"
-                            placeholder="Comment *"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <input
-                            id="name"
-                            type="text"
-                            class="form-control"
-                            aria-describedby="name"
-                            placeholder="Name *"
-                          >
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <input
-                            id="email"
-                            type="email"
-                            class="form-control"
-                            aria-describedby="email"
-                            placeholder="Email *"
-                          >
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <a
-                            href="#"
-                            class="btn btn-lg btn-dark font-weight-bold mt-3"
-                          >Send Message</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="col-lg-4 mb-5">
-                  <h1 class="mt-5 text-center mb-5">Contact Us via</h1>
-                  <div>
-                    <i class="mdi mdi-24px mdi-email" />
-                    <span class="text-muted display-4">admin@leccel.net</span>
-                  </div>
-                  <div>
-                    <i class="mdi mdi-24px mdi-twitter" />
-                    <span class="text-muted display-4">@leccelj</span>
-                  </div>
-                </div>
-              </div>
+          <q-card class="card card-square" data-aos="fade-up">
+            <div class="card-header">
+              <h3 class="text-center">About Us</h3>
             </div>
-          </div>
+
+            <q-card-section class="">
+              <div class="aboutus-wrapper">
+                <!-- <q-img
+                  src="~/assets/images/headphones-colour.svg"
+                  alt="banner"
+                  style="width: 80%; height: 80%"
+                  class="img-fluid mb-5 text-center q-mb-lg"
+                /> -->
+                <div class="row justify-center">
+                  <q-btn color="green" icon="mdi-whatsapp" round @click="onClick" />
+                </div>
+
+                <p
+                  class="font-weight-600 fs-15"
+                  style="font-size: 18px !important"
+                >Leccel.net is an online platform that delivers the latest Music especially Africa Music together with Entertainment news to her visitors all over the World.</p>
+                <p
+                  class="font-weight-600 fs-15 mb-5 mt-4"
+                  style="font-size: 18px !important"
+                >It’s basically concerned with the promotion and distribution of good music around the world. Our platform is easy to access from any browser and country around the world.</p>
+                <p
+                  class="font-weight-600 fs-15"
+                  style="font-size: 18px !important"
+                >Right from the onset, Leccel has focused on providing highest quality contents on the web. Our audience consistently revisits our site daily in search for latest songs and Entertainment updates – Leccel.net is a Nice fit for your advertising needs.</p>
+              </div>
+            </q-card-section>
+          </q-card>
         </div>
       </div>
     </div>
