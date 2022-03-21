@@ -10,7 +10,8 @@
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
     "dev": "cross-env quasar dev",
-    "build": "cross-env quasar build -m pwa"
+    "build:pwa": "cross-env quasar build -m pwa",
+    "build": "cross-env quasar build"
   },
   "dependencies": {
     "@quasar/extras": "^1.12.5",
