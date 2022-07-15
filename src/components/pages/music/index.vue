@@ -13,18 +13,8 @@
               <form @submit.prevent="passes(changeRoute)">
                 <div class="form-group" data-aos="fade-down">
                   <ValidationProvider v-slot="{ errors }" name="search" rules="maxlength">
-                    <q-input
-                      square
-                      outlined
-                      v-model="query"
-                      class="searchInput shadow-2 fs-16"
-                      label="Search Music"
-                    />
-                    <div
-                      v-for="(datum, i) in errors"
-                      :key="i"
-                      class="alert alert-danger mr-3 fs-12 p-0"
-                    >
+                    <q-input square outlined v-model="query" class="searchInput shadow-2 fs-16" label="Search Music" />
+                    <div v-for="(datum, i) in errors" :key="i" class="alert alert-danger mr-3 fs-12 p-0">
                       <i>{{ datum }}</i>
                     </div>
                   </ValidationProvider>
@@ -49,23 +39,13 @@
                 </div>
               </div>
               <q-card-section class="card-body">
-                <router-link
-                  v-for="(lmusic, i) in PopularMusic"
-                  :key="i"
-                  tag="div"
+                <router-link v-for="(lmusic, i) in PopularMusic" :key="i" tag="div"
                   :to="{ name: 'Music', params: { short_url: lmusic.short_url } }"
-                  class="fit row inline justify-start items-stretch content-start shadow-4 cursor-pointer"
-                >
+                  class="fit row inline justify-start items-stretch content-start shadow-4 cursor-pointer">
                   <!-- <i class="mdi mdi-star-circle text-danger"/> -->
 
-                  <q-img
-                    :src="lmusic.images[0]"
-                    style="width: 60px; height: 60px"
-                    alt=""
-                  />
-                  <div
-                    class="col self-center wrap q-ml-sm text-weight-bold text-black-50"
-                  >
+                  <q-img :src="lmusic.images[0]" style="width: 60px; height: 60px" alt="" />
+                  <div class="col self-center wrap q-ml-sm text-weight-bold text-black-50">
                     (MP3) - Download {{ lmusic.music_name }}
                     <!-- wifu fweibivi woiv wvowieb vwibvwveowv woievbwv iobio -->
                   </div>
@@ -93,21 +73,12 @@
                       <img src="~/assets/images/loader.gif" alt="" />
                     </div>
                   </div>
-                  <router-link
-                    v-for="(music, i) in AllMusic"
-                    :key="i"
-                    :to="{ name: 'Music', params: { short_url: music.short_url } }"
-                    tag="div"
-                    style="cursor: pointer"
-                    class="col-12 col-sm-6 col-xs-12 col-lg-3 col-md-4 grid-margin q-pa-sm stretch-card"
-                  >
+                  <router-link v-for="(music, i) in AllMusic" :key="i"
+                    :to="{ name: 'Music', params: { short_url: music.short_url } }" tag="div" style="cursor: pointer"
+                    class="col-12 col-sm-6 col-xs-12 col-lg-3 col-md-4 grid-margin q-pa-sm stretch-card">
                     <q-card class="music" style="width: 100%; border-radius: 10px">
                       <div class="card-img-holder">
-                        <q-img
-                          :src="music.images[0]"
-                          style="border-radius: 10px 10px 0 0"
-                          :alt="music.music_name"
-                        />
+                        <q-img :src="music.images[0]" style="border-radius: 10px 10px 0 0" :alt="music.music_name" />
                       </div>
 
                       <q-card-section class="">
@@ -117,11 +88,8 @@
                         <div class="row justify-between">
                           <p class="d-inline L5 mb-0">
                             <i class="mdi mdi-artist" />
-                            <router-link
-                              :to="`/search/music/${music.artist}`"
-                              style="text-decoration: none"
-                              class="fs-15 text-muted text-decoration-none"
-                            >
+                            <router-link :to="`/search/music/${music.artist}`" style="text-decoration: none"
+                              class="fs-15 text-muted text-decoration-none">
                               {{ music.artist }}
                             </router-link>
                           </p>
@@ -136,37 +104,9 @@
                   <!-- </div> -->
                 </div>
               </q-card-section>
-              <!-- <nav
-                class="nav d-flex align-items-center justify-content-center"
-                aria-label="Album-pager"
-              >
-                <ul class="pagination">
-                  <li class="page-item prev" @click="makeReq('- 1')">
-                    <input id="pagelink" value="" type="hidden" />
-                    <a class="page-link">
-                      <i class="mdi mdi-arrow-left-bold" />
-                    </a>
-                  </li>
-
-                  <li class="page-item next" @click="makeReq('+ 1')">
-                    <input id="pagelink" value="" type="hidden" />
-                    <a class="page-link">
-                      <i class="mdi mdi-arrow-right-bold" />
-                    </a>
-                  </li>
-                </ul>
-              </nav> -->
-              <!-- <div class="d-flex align-items-center justify-content-center pad2x">
-                <p class="pager">Page {{ current_page }} of {{ total_pages }}</p>
-              </div>
-              <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages">
-              </q-pagination> -->
+              
               <div class="q-pa-lg flex flex-center">
-                <q-pagination
-                  v-model="current_page"
-                  :max="AllMusicMeta.total_pages"
-                  input
-                />
+                <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages" input />
               </div>
             </q-card>
           </div>

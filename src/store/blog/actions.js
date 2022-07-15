@@ -93,11 +93,11 @@ export async function fetchCategories({ commit }) {
 
 export async function fetchPostsByCategories(
   { commit },
-  slug = "entertainment"
+  slug = "entertainment",
 ) {
   try {
     commit("setLoadingPostsByCategories");
-    await blogApi.get(`/posts?category=${slug}`).then(response => {
+    await blogApi.get(`/posts?category=${slug}&number=100`).then(response => {
       commit("setPostsByCategories", response.data);
       commit("setLoadingPostsByCategories");
 

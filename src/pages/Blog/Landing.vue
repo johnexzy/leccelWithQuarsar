@@ -19,22 +19,16 @@
             <img class="full-width" :src="StickyPost.featured_image" alt="" />
           </div>
           <div class="col-12 col-md-6 col-lg-6">
-            <router-link
-              tag="div"
-              :to="{
-                name: 'blog',
-                query: {
-                  categories: Object.keys(StickyPost.categories)[0].toLocaleLowerCase(),
-                },
-              }"
-              class="text-caption text-para-default q-mb-sm cursor-pointer"
-            >
+            <router-link tag="div" :to="{
+              name: 'blog',
+              query: {
+                categories: Object.keys(StickyPost.categories)[0].toLocaleLowerCase(),
+              },
+            }" class="text-caption text-para-default q-mb-sm cursor-pointer">
               {{ Object.keys(StickyPost.categories)[0].toLocaleUpperCase() }}
             </router-link>
-            <router-link
-              :to="{ name: 'blogs.blog', params: { blog: StickyPost.slug } }"
-              class="text-h3 text-black text-weight-bold"
-            >
+            <router-link :to="{ name: 'blogs.blog', params: { blog: StickyPost.slug } }"
+              class="text-h3 text-black text-weight-bold">
               {{ StickyPost.title }}
             </router-link>
             <div v-html="StickyPost.excerpt" class="text-subtitle q-my-sm"></div>
@@ -44,15 +38,12 @@
                   <q-item class="q-pa-none">
                     <q-item-section avatar>
                       <q-avatar size="30px">
-                        <q-img
-                          style="width: 30px; height: 30px"
-                          :src="StickyPost.author.avatar_URL"
-                        />
+                        <q-img style="width: 30px; height: 30px" :src="StickyPost.author.avatar_URL" />
                       </q-avatar>
                     </q-item-section>
                     <q-item-section>{{ StickyPost.author.name }}</q-item-section>
                     <q-item-section side>{{
-                      timeAgo(StickyPost.modified)
+                        timeAgo(StickyPost.modified)
                     }}</q-item-section>
                   </q-item>
                 </q-list>
@@ -71,22 +62,10 @@
             <div class="text-caption text-para-default">EXPLORE</div>
 
             <!-- section sidebar -->
-            <q-tabs
-              v-model="tab"
-              vertical
-              class="text-left q-mb-xl secondfont"
-              active-color="primary"
-              style="height: unset !important"
-            >
-              <q-tab
-                style="font-size: 1.2rem"
-                class="blog-category-tab"
-                no-caps
-                v-for="(cat, i) in Categories"
-                :key="i"
-                :name="cat.slug"
-                :label="cat.name.toUpperCase()"
-              />
+            <q-tabs v-model="tab" vertical class="text-left q-mb-xl secondfont" active-color="primary"
+              style="height: unset !important">
+              <q-tab style="font-size: 1.2rem" class="blog-category-tab" no-caps v-for="(cat, i) in Categories" :key="i"
+                :name="cat.slug" :label="cat.name.toUpperCase()" />
             </q-tabs>
 
             <!-- section newsletter -->
@@ -130,22 +109,11 @@
             </div> -->
           </div>
           <div class="col-12 col-md-9 col-lg-9">
-            <q-tab-panels
-              v-model="tab"
-              animated
-              vertical
-              transition-prev="jump-up"
-              transition-next="jump-up"
-            >
+            <q-tab-panels v-model="tab" animated vertical transition-prev="jump-up" transition-next="jump-up">
               <q-tab-panel v-for="(cat, i) in Categories" :key="i" :name="cat.slug">
                 <div v-if="LoadingPostsByCategories" class="row q-col-gutter-lg">
-                  <q-card
-                    v-for="i in 4"
-                    :key="i"
-                    class="col-12 col-md-6 col-lg-6 q-mb-xl"
-                    flat
-                    style="max-width: 300px; background: transparent"
-                  >
+                  <q-card v-for="i in 4" :key="i" class="col-12 col-md-6 col-lg-6 q-mb-xl" flat
+                    style="max-width: 300px; background: transparent">
                     <q-item>
                       <q-item-section avatar>
                         <q-skeleton animation="wave" width="100%" type="text" />
@@ -172,62 +140,39 @@
                         </q-item-section>
 
                         <q-item-section>
-                          <q-skeleton
-                            type="text"
-                            width="50%"
-                            class="text-subtitle2"
-                            animation="wave"
-                          />
+                          <q-skeleton type="text" width="50%" class="text-subtitle2" animation="wave" />
                         </q-item-section>
                         <q-item-section avatar>
-                          <q-skeleton
-                            type="text"
-                            width="100%"
-                            class="text-caption"
-                            animation="wave"
-                          />
+                          <q-skeleton type="text" width="100%" class="text-caption" animation="wave" />
                         </q-item-section>
                       </q-item>
                     </q-card-section>
                   </q-card>
                 </div>
                 <div class="row q-col-gutter-lg">
-                  <div
-                    v-for="(post, i) in PostsByCategories.posts"
-                    :key="i"
-                    class="col-12 col-md-6 col-lg-6 q-mb-xl"
-                  >
+                  <div v-for="(post, i) in PostsByCategories.posts" :key="i" class="col-12 col-md-6 col-lg-6 q-mb-xl">
                     <!-- <div class="text-caption q-my-sm text-para-default">
                       NEWS
                     </div> -->
                     <!-- <h3 class="text-h5 text-weight-bold text-default"> -->
-                    <router-link
-                      tag="h3"
-                      :to="{ name: 'blogs.blog', params: { blog: post.slug } }"
-                      class="cursor-pointer text-weight-bold text-h4 text-black"
-                    >
+                    <router-link tag="h3" :to="{ name: 'blogs.blog', params: { blog: post.slug } }"
+                      class="cursor-pointer text-weight-bold text-h4 text-black">
                       {{ post.title }}
                     </router-link>
                     <!-- </h3> -->
-                    <div
-                      v-html="post.excerpt"
-                      class="ellipsis-2-lines text-subtitle text-para-default q-my-sm"
-                    ></div>
+                    <div v-html="post.excerpt" class="ellipsis-2-lines text-subtitle text-para-default q-my-sm"></div>
                     <div class="row">
                       <div class="col-12 col-md-10 col-lg-10">
                         <q-list>
                           <q-item class="q-pa-none">
                             <q-item-section avatar>
                               <q-avatar size="30px">
-                                <q-img
-                                  style="width: 30px; height: 30px"
-                                  :src="post.author.avatar_URL"
-                                />
+                                <q-img style="width: 30px; height: 30px" :src="post.author.avatar_URL" />
                               </q-avatar>
                             </q-item-section>
                             <q-item-section>{{ post.author.name }}</q-item-section>
                             <q-item-section side>{{
-                              timeAgo(post.modified)
+                                timeAgo(post.modified)
                             }}</q-item-section>
                           </q-item>
                         </q-list>
@@ -235,9 +180,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="flex justify-center">
-                  <q-btn unelevated color="grey-5" label="View more" />
-                </div>
+              <div class="q-pa-lg flex flex-center">
+                <!-- <q-pagination v-model="current_page" :max="AllMusicMeta.total_pages" input /> -->
+              </div>
               </q-tab-panel>
             </q-tab-panels>
           </div>
@@ -266,6 +211,7 @@ export default {
     return {
       tab: this.$route.query.categories || "album",
       email: "",
+      current_page:1
       // StickyPost: {}
     };
   },
@@ -377,9 +323,11 @@ export default {
   display: flex;
   justify-content: flex-start;
 }
+
 .blog-category-tab .q-tab__indicator {
   display: none;
 }
+
 .blog-category-tab .q-tab__content .q-tab__label {
   font-size: 1.5rem !important;
   font-weight: bold;
